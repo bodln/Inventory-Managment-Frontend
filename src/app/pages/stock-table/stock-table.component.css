@@ -1,0 +1,47 @@
+.table-container {
+  margin: 20px auto;
+  max-width: 1400px;
+  width: 100%; /* Ensure container is full-width for alignment */
+}
+
+.stock-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.mat-header-cell {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.over-capacity {
+  background-color: #ffcccc; /* Red for over capacity */
+}
+
+.under-capacity {
+  background-color: #ccffcc; /* Green for under capacity */
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%; /* Full width to align with the table */
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+}

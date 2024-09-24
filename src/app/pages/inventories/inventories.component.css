@@ -1,0 +1,23 @@
+.table-container {
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+.search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sort-buttons {
+    margin-bottom: 10px;
+}
+
+.inventory-table {
+    width: 100%;
+    border-radius: 8px;
+}
+
+mat-form-field {
+    width: 100%;    
+}
+  

@@ -1,0 +1,58 @@
+<h2>Analytics</h2>
+
+<div class="table-container">
+    <mat-form-field appearance="fill" class="search-bar">
+      <mat-label>Search Items</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchQueryChange()"
+        placeholder="Enter item name to search"
+      />
+    </mat-form-field>
+  
+    <div class="header-container">
+      <div class="sort-buttons">
+        <button mat-button (click)="onSortBy('name')">Sort by Name</button>
+        <button mat-button (click)="onSortBy('unitsSold')">Sort by Units Sold</button>
+        <button mat-button (click)="onSortBy('profit')">Sort by Profit</button>
+      </div>
+    </div>
+  
+    <table mat-table [dataSource]="filteredItems$" class="mat-elevation-z8 item-table">
+      <ng-container matColumnDef="naziv">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let analysis"> {{ analysis.item.naziv }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Last Location </th>
+        <td mat-cell *matCellDef="let analysis"> 
+          {{ analysis.locations[0]?.locationName || 'N/A' }} 
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="unitsSold">
+        <th mat-header-cell *matHeaderCellDef> Units Sold </th>
+        <td mat-cell *matCellDef="let analysis"> {{ analysis.unitsSold }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="profit">
+        <th mat-header-cell *matHeaderCellDef> Total Profit ($) </th>
+        <td mat-cell *matCellDef="let analysis"> {{ analysis.totalProfit | number:'1.2-2' }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let analysis">
+          <button mat-icon-button (click)="viewAnalysis(analysis)" matTooltip="View Analysis">
+            <mat-icon>analytics</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

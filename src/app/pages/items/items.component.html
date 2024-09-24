@@ -1,0 +1,82 @@
+<h2>Item Management</h2>
+
+<div class="table-container">
+  <mat-form-field appearance="fill" class="search-bar">
+    <mat-label>Search Items</mat-label>
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchQueryChange()"
+      placeholder="Enter item name to search"
+    />
+  </mat-form-field>
+
+  <div class="header-container">
+    <div class="sort-buttons">
+      <button mat-button (click)="onSortBy('name')">Sort by Name</button>
+      <button mat-button (click)="onSortBy('weight')">Sort by Weight</button>
+      <button mat-button (click)="onSortBy('price')">Sort by Price</button>
+      <button mat-button (click)="onSortBy('type')">Sort by Type</button>
+    </div>
+
+    <button mat-raised-button color="primary" class="add-button" (click)="navigateToAddItem()">
+      <mat-icon>add</mat-icon> Add
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="filteredItems$" class="mat-elevation-z8 item-table">
+    <ng-container matColumnDef="naziv">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let item"> {{ item.naziv }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight (kg) </th>
+      <td mat-cell *matCellDef="let item"> {{ item.weight }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let item"> {{ item.type }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price ($) </th>
+      <td mat-cell *matCellDef="let item"> {{ item.price }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maxAmount">
+      <th mat-header-cell *matHeaderCellDef> Max Amount </th>
+      <td mat-cell *matCellDef="let item"> {{ item.maxAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="minAmount">
+      <th mat-header-cell *matHeaderCellDef> Min Amount </th>
+      <td mat-cell *matCellDef="let item"> {{ item.minAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let item">
+        <button mat-icon-button (click)="editItem(item)" matTooltip="Edit Item">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteItem(item)" matTooltip="Delete Item">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="analyzeItem(item)" matTooltip="Analyze Item">
+          <mat-icon>analytics</mat-icon>
+        </button>
+        <button mat-icon-button (click)="salesItem(item)" matTooltip="View Sales">
+          <mat-icon>sell</mat-icon>
+        </button>
+        <button mat-icon-button (click)="orderMore(item)" matTooltip="Order More">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

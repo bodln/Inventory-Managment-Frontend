@@ -1,0 +1,76 @@
+<h2>Inventory Stock Management</h2>
+
+<div class="table-container">
+  <mat-form-field appearance="fill" class="search-bar">
+    <mat-label>Search Items</mat-label>
+    <input
+      matInput
+      [(ngModel)]="searchText"
+      (ngModelChange)="applyFilter()"
+      placeholder="Search by item name"
+    />
+  </mat-form-field>
+
+  <div class="header-container">
+    <div class="sort-buttons">
+      <button mat-button (click)="setSortByCapacity('none')" [disabled]="sortByCapacity === 'none'">
+        All Items
+      </button>
+      <button mat-button (click)="setSortByCapacity('over')" [disabled]="sortByCapacity === 'over'">
+        Over Capacity
+      </button>
+      <button mat-button (click)="setSortByCapacity('under')" [disabled]="sortByCapacity === 'under'">
+        Under Capacity
+      </button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="filteredStocks$" class="mat-elevation-z8 stock-table">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.item.naziv }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availableAmount">
+      <th mat-header-cell *matHeaderCellDef> Available Amount </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.availableAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maxAmount">
+      <th mat-header-cell *matHeaderCellDef> Max Amount </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.item.maxAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="minAmount">
+      <th mat-header-cell *matHeaderCellDef> Min Amount </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.item.minAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="overCapacity">
+      <th mat-header-cell *matHeaderCellDef> Over Capacity </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.overCapacity ? 'Yes' : 'No' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="underCapacity">
+      <th mat-header-cell *matHeaderCellDef> Under Capacity </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.underCapacity ? 'Yes' : 'No' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="moreInStorage">
+      <th mat-header-cell *matHeaderCellDef> More in Storage </th>
+      <td mat-cell *matCellDef="let stock"> {{ stock.moreInStorage ? 'Yes' : 'No' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let stock">
+        <button mat-icon-button (click)="analyzeItem(stock)" matTooltip="Analyze Item">
+          <mat-icon>analytics</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let stock; columns: displayedColumns;" [ngClass]="getRowClass(stock)"></tr>
+  </table>
+</div>

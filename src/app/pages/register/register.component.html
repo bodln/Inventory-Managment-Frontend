@@ -1,0 +1,69 @@
+<div class="h-screen flex items-center justify-center">
+    <form class="shadow-md rounded-md p-5 bg-white w-1/3" [formGroup]="form" (ngSubmit)="register()">
+      <div class="py-4">
+        <h1 class="font-bold py-2">Register</h1>
+        <h6 class="text-slate-600 text-base">Register a user</h6>
+      </div>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-icon matPrefix>email</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="{{ hide ? 'password' : 'text'}}" formControlName="password" placeholder="Password" />
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-icon (click)="hide = !hide" matSuffix>
+          {{ hide ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="{{ hide ? 'password' : 'text'}}" formControlName="confirmPassword" placeholder="Confirm Password" />
+        <mat-icon matPrefix>lock</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" formControlName="firstName" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" formControlName="lastName" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Address" formControlName="address" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" placeholder="Date of Birth" />
+        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobPicker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Date of Hire</mat-label>
+        <input matInput [matDatepicker]="hirePicker" formControlName="dateOfHire" placeholder="Date of Hire" />
+        <mat-datepicker-toggle matSuffix [for]="hirePicker"></mat-datepicker-toggle>
+        <mat-datepicker #hirePicker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" formControlName="salary" />
+      </mat-form-field>
+  
+      <button type="submit" [disabled]="!form.valid"
+        class="w-full border border-slate-200 rounded-md disabled:bg-purple-400 py-2 px-3 bg-purple-700 text-white font-bold">
+        Register
+      </button>
+    </form>
+  </div>
+  
