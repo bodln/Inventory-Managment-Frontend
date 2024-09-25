@@ -18,6 +18,10 @@ import { FormsModule } from '@angular/forms';
         <mat-label>New Loaction</mat-label>
         <input matInput [(ngModel)]="locationName" />
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Quantity for transfer</mat-label>
+        <input matInput [(ngModel)]="transferQuantity" />
+      </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onCancel()">Cancel</button>
@@ -36,6 +40,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class MoveInventoryComponent {
   locationName: string = '';
+  transferQuantity: number = 0;
   snackBar = inject(MatSnackBar);
   http = inject(HttpClient);
 
@@ -57,7 +62,8 @@ export class MoveInventoryComponent {
     const endpoint = `${environment.apiUrl}/LocationHistory`;
     const locationHistoryRequest: LocationHistoryRequest = {
       inventoryGUID: this.data.inventoryGUID,
-      locationName: this.locationName
+      locationName: this.locationName,
+      quantity: this.transferQuantity
     };
 
     const token = localStorage.getItem('token');

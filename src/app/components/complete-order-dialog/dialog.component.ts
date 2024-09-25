@@ -57,7 +57,7 @@ export class CompleteOrderDialogComponent {
     const endpoint = `${environment.apiUrl}/ShipmentOrder/Conclude/${this.data.orderGuid}`;
     const payload = {
       location: this.location,
-      itemGuid: this.data.itemGuid,
+      itemGuid: this.data.itemGuid
     };
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
