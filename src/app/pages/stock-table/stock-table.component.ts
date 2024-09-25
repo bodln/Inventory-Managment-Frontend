@@ -62,6 +62,7 @@ export class StockTableComponent {
       )
       .subscribe((stocks) => {
         this.originalStocks = stocks;
+        console.log(stocks)
         this.filteredStocks$.next(stocks);
       });
   }
