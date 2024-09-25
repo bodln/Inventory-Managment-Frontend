@@ -11,6 +11,7 @@ import { AddItemComponent } from './pages/add-item/add-item.component';
 import { ShipmentOrderComponent } from './pages/shipment-order/shipment-order.component';
 import { ItemAnalysisComponent } from './pages/item-analysis/item-analysis.component';
 import { StockTableComponent } from './pages/stock-table/stock-table.component';
+import { BillsTableComponent } from './pages/bills-table/bills-table.component';
 
 export const routes: Routes = [
     {
@@ -61,6 +62,12 @@ export const routes: Routes = [
     {
         path:'stock', 
         component:StockTableComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['Admin', 'Manager'] }
+    },
+    {
+        path:'bills', 
+        component:BillsTableComponent,
         canActivate: [RoleGuard],
         data: { roles: ['Admin', 'Manager'] }
     },

@@ -4,15 +4,6 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mainMenu="matMenu">
-      <button mat-menu-item [routerLink]="['/dashboard']">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </button>
-      <button mat-menu-item [routerLink]="['/inventory']">
-        <mat-icon>inventory</mat-icon>
-        <span>Inventory</span>
-      </button>
-
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/items']">
         <mat-icon>settings</mat-icon>
         <span>Items</span>
@@ -41,6 +32,11 @@
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/users']">
         <mat-icon>settings</mat-icon>
         <span>Users</span>
+      </button>
+
+      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/bills']">
+        <mat-icon>settings</mat-icon>
+        <span>Bills</span>
       </button>
     </mat-menu>
 
