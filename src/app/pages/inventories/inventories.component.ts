@@ -15,6 +15,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { DeleteConfirmationDialog } from '../../components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MoveInventoryComponent } from '../../components/move-inventory/move-inventory.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-inventory-table',
@@ -26,6 +27,7 @@ import { MoveInventoryComponent } from '../../components/move-inventory/move-inv
     MatInputModule,
     CommonModule,
     FormsModule,
+    MatTooltipModule
   ],
   templateUrl: './inventories.component.html',
   styleUrls: ['./inventories.component.css'],

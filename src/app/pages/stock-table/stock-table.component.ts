@@ -14,6 +14,8 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ItemRequestResponse } from '../../interfaces/item-request-response';
+import { OrderItemDialogComponent } from '../../components/order-item-dialog/order-item-dialog.component';
 
 @Component({
   selector: 'app-stock-table',
@@ -43,6 +45,11 @@ export class StockTableComponent {
   sortByCapacity: 'none' | 'over' | 'under' = 'none';
 
   constructor() {
+    this.fetchStockData(); // Fetch stock data on initialization
+  }
+
+  // Method to fetch stock data from the server
+  fetchStockData() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -56,13 +63,12 @@ export class StockTableComponent {
             duration: 5000,
             horizontalPosition: 'center',
           });
-          return of([]);
+          return of([]); // Return an empty array on error
         }),
         map((stocks) => stocks ?? [])
       )
       .subscribe((stocks) => {
         this.originalStocks = stocks;
-        console.log(stocks)
         this.filteredStocks$.next(stocks);
       });
   }
@@ -97,5 +103,19 @@ export class StockTableComponent {
   setSortByCapacity(value: 'none' | 'over' | 'under') {
     this.sortByCapacity = value;
     this.applyFilter();
+  }
+
+  orderMore(item: ItemRequestResponse) {
+    const dialogRef = this.dialog.open(OrderItemDialogComponent, {
+      width: '400px',
+      data: { itemName: item.naziv, itemGuid: item.guid },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Ordered more:', item.naziv);
+        this.fetchStockData(); 
+      }
+    });
   }
 }

@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, forkJoin, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ItemRequestResponse } from '../../interfaces/item-request-response';
 import { environment } from '../../../environments/environment';
@@ -16,6 +16,10 @@ import { Router } from '@angular/router';
 import { DeleteConfirmationDialog } from '../../components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OrderItemDialogComponent } from '../../components/order-item-dialog/order-item-dialog.component';
+import { SellItemDialogComponent } from '../../components/sell-item-dialog/sell-item-dialog.component';
+import { ItemAnalysisDialogComponent } from '../../components/item-analysis-dialog/item-analysis-dialog.component';
+import { StockResponse } from '../../interfaces/stock-response';
+import { AnalysisResponse } from '../../interfaces/analysis-reponse';
 
 @Component({
   selector: 'app-items-table',
@@ -164,6 +168,72 @@ export class ItemsComponent {
       if (location) {
         console.log('Ordered more:', item.naziv);
       }
+    });
+  }
+
+  sell(item: ItemRequestResponse) {
+    const dialogRef = this.dialog.open(SellItemDialogComponent, {
+      width: '400px',
+      data: { itemGuid: item.guid },
+    });
+
+    dialogRef.afterClosed().subscribe((location) => {
+      if (location) {
+        console.log('Sold:', item.naziv);
+      }
+    });
+  }
+
+  analyze(item: ItemRequestResponse) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    const analysisRequest = this.http
+      .get<AnalysisResponse>(`${environment.apiUrl}/Item/Analyze/${item.guid}`, { headers })
+      .pipe(
+        catchError((error) => {
+          this.snackBar.open('Failed to load analysis data. Please try again later.', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+          console.log('Error loading analysis data:', error);
+          return throwError(() => new Error('Failed to load analysis data.'));
+        })
+      );
+  
+    const stockRequest = this.http
+      .get<StockResponse>(`${environment.apiUrl}/Inventory/Stock/${item.guid}`, { headers })
+      .pipe(
+        catchError((error) => {
+          this.snackBar.open('Failed to load stock data. Please try again later.', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+          console.log('Error loading stock data:', error);
+          return throwError(() => new Error('Failed to load stock data.'));
+        })
+      );
+  
+    forkJoin([analysisRequest, stockRequest]).subscribe({
+      next: ([analysis, stock]) => {
+        if (analysis && stock) {
+          const dialogRef = this.dialog.open(ItemAnalysisDialogComponent, {
+            width: '400px',
+            data: { analysis, stock },
+          });
+  
+          dialogRef.afterClosed().subscribe((location) => {
+            if (location) {
+              console.log('Analyzed:', item.naziv);
+            }
+          });
+        }
+      },
+      error: (error) => {
+        console.log('Error retrieving analysis or stock data:', error);
+      },
     });
   }
 }

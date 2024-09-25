@@ -41,13 +41,10 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let inventory">
-          <button mat-icon-button (click)="editInventory(inventory)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteInventory(inventory)">
+          <button mat-icon-button (click)="deleteInventory(inventory)" matTooltip="Delete">
             <mat-icon>delete</mat-icon>
           </button>
-          <button mat-icon-button (click)="moveInventory(inventory)">
+          <button mat-icon-button (click)="moveInventory(inventory)" matTooltip="Change location">
             <mat-icon>swap_horiz</mat-icon>
           </button>
         </td>

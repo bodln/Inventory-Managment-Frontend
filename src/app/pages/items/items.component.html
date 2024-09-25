@@ -64,7 +64,7 @@
         <button mat-icon-button (click)="deleteItem(item)" matTooltip="Delete Item">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button (click)="analyzeItem(item)" matTooltip="Analyze Item">
+        <button mat-icon-button (click)="analyze(item)" matTooltip="Analyze Item">
           <mat-icon>analytics</mat-icon>
         </button>
         <button mat-icon-button (click)="salesItem(item)" matTooltip="View Sales">
@@ -72,6 +72,9 @@
         </button>
         <button mat-icon-button (click)="orderMore(item)" matTooltip="Order More">
           <mat-icon>shopping_cart</mat-icon>
+        </button>
+        <button mat-icon-button (click)="sell(item)" matTooltip="Sell some">
+          <mat-icon>monetization_on</mat-icon>
         </button>
       </td>
     </ng-container>
