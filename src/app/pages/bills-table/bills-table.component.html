@@ -1,0 +1,64 @@
+<h2>Bill of Sale Management</h2>
+
+<div class="table-container">
+  <mat-form-field appearance="fill" class="search-bar">
+    <mat-label>Search by Item Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchQueryChange()"
+      placeholder="Enter item name to search"
+    />
+  </mat-form-field>
+
+  <div class="header-container">
+    <div class="sort-buttons">
+      <button mat-button (click)="onSortBy('date')">Sort by Recency</button>
+    </div>
+
+    <button mat-raised-button color="primary" class="add-button" (click)="navigateToAddBill()">
+      <mat-icon>add</mat-icon> Add
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="filteredBills$" class="mat-elevation-z8 bills-table">
+    <ng-container matColumnDef="itemName">
+      <th mat-header-cell *matHeaderCellDef> Item Name </th>
+      <td mat-cell *matCellDef="let bill"> {{ bill.item.naziv }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buyerName">
+      <th mat-header-cell *matHeaderCellDef> Buyer's Name </th>
+      <td mat-cell *matCellDef="let bill"> 
+        {{ bill.nameOfBuyer || 'Refused to say' }} 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="contactInfo">
+      <th mat-header-cell *matHeaderCellDef> Contact Information </th>
+      <td mat-cell *matCellDef="let bill"> 
+        {{ bill.contactInfo || 'Refused to say' }} 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef> Quantity </th>
+      <td mat-cell *matCellDef="let bill"> {{ bill.quantity }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let bill"> 
+        {{ (bill.item.price * bill.quantity) | currency }} 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfSale">
+      <th mat-header-cell *matHeaderCellDef> Date of Sale </th>
+      <td mat-cell *matCellDef="let bill"> {{ bill.dateOfSale | date }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
