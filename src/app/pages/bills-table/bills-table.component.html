@@ -15,10 +15,6 @@
     <div class="sort-buttons">
       <button mat-button (click)="onSortBy('date')">Sort by Recency</button>
     </div>
-
-    <button mat-raised-button color="primary" class="add-button" (click)="navigateToAddBill()">
-      <mat-icon>add</mat-icon> Add
-    </button>
   </div>
 
   <table mat-table [dataSource]="filteredBills$" class="mat-elevation-z8 bills-table">
