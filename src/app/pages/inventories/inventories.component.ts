@@ -54,8 +54,9 @@ export class InventoriesComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
-
+  
     this.http
       .get<InventoryResponse[]>(`${environment.apiUrl}/Inventory`, { headers })
       .pipe(
@@ -64,7 +65,9 @@ export class InventoriesComponent {
             duration: 5000,
             horizontalPosition: 'center',
           });
-          return of([]); // Return an empty array on error
+          console.log("Inventory error: ");
+          console.log(error);
+          return of([]); 
         }),
         map((inventories) => inventories ?? [])
       )
@@ -73,6 +76,7 @@ export class InventoriesComponent {
         this.filteredInventories$.next(inventories);
       });
   }
+  
 
   // Filter and sort inventories based on search query and selected sort field
   filterInventories(): InventoryResponse[] {
