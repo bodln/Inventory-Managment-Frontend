@@ -58,6 +58,7 @@ export class EditItemComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
 
     this.http.get<ItemRequestResponse>(`${environment.apiUrl}/Item/${this.itemGuid}`, {headers})
@@ -74,8 +75,9 @@ export class EditItemComponent {
     if (this.form.valid) {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
+      Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
+    });
 
       this.http.put(`${environment.apiUrl}/Item/${this.itemGuid}`, this.form.value, {headers})
         .subscribe({

@@ -53,6 +53,7 @@ export class ItemsComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
 
     this.http
@@ -188,6 +189,7 @@ export class ItemsComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
   
     const analysisRequest = this.http

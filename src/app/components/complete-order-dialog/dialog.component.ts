@@ -62,6 +62,7 @@ export class CompleteOrderDialogComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
 
     this.http.put(endpoint, payload, { headers }).subscribe({

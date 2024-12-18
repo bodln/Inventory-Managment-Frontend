@@ -47,6 +47,7 @@ export class UsersComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
 
     this.http
@@ -112,13 +113,15 @@ export class UsersComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const token = localStorage.getItem('token');
+        
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true', 
         });
         const body = { email: user.email };
 
         this.http
-          .post(`${environment.apiUrl}/User/RemoveUser`, { headers, body })
+          .post(`${environment.apiUrl}/User/RemoveUser`, { headers, body }) // fix this saying it is unauthorized
           .subscribe({
             next: () => {
               this.originalUsers = this.originalUsers.filter(

@@ -53,6 +53,7 @@ export class ShipmentOrderComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
     });
 
     this.http

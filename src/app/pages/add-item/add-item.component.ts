@@ -53,8 +53,9 @@ export class AddItemComponent {
 
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
+      Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true', 
+    });
   
       this.http.post(`${environment.apiUrl}/Item`, this.form.value, {headers})
         .subscribe({
