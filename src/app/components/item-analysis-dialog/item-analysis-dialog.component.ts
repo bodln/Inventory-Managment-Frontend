@@ -28,13 +28,14 @@ import { AnalysisResponse } from '../../interfaces/analysis-reponse';
       <table mat-table [dataSource]="filteredLocations">
         <ng-container matColumnDef="locationName">
           <th mat-header-cell *matHeaderCellDef>Location</th>
-          <td mat-cell *matCellDef="let location">
+          <td mat-cell *matCellDef="let location; let last = last">
             {{ location.locationName }}
-            <span *ngIf="isMostRecentLocation(location)">
+            <span *ngIf="last">
               (Most Recent)
             </span>
           </td>
         </ng-container>
+
 
         <ng-container matColumnDef="warehouseman">
           <th mat-header-cell *matHeaderCellDef>Warehouseman</th>
@@ -82,11 +83,9 @@ export class ItemAnalysisDialogComponent {
   ) {
     this.filteredLocations = this.getLatestLocations(data.analysis.locations);
     
-    // Logging for debugging
     console.log("Analysis received: ", data.analysis);
     console.log("Stock received: ", data.stock);
 
-    // Safely log the availableAmount and handle possible undefined/null
     if (data.stock && data.stock.avilableAmount != null) {
       console.log("Available amount: ", data.stock.avilableAmount);
     } else {
@@ -98,7 +97,6 @@ export class ItemAnalysisDialogComponent {
     this.dialogRef.close();
   }
 
-  // Get only the most recent location for each location name
   getLatestLocations(locations: LocationHistoryResponse[]): LocationHistoryResponse[] {
     const latestLocationsMap = new Map<string, LocationHistoryResponse>();
 
@@ -114,7 +112,6 @@ export class ItemAnalysisDialogComponent {
     return Array.from(latestLocationsMap.values());
   }
 
-  // Check if the location is the most recent (though filtered should already have the most recent only)
   isMostRecentLocation(location: LocationHistoryResponse): boolean {
     return this.filteredLocations.includes(location);
   }
