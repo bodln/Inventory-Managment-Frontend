@@ -5,37 +5,37 @@
     </button>
     <mat-menu #mainMenu="matMenu">
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/items']">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>inventory</mat-icon>
         <span>Items</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/inventories']">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>storage</mat-icon>
         <span>Inventories</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/shipmentorders']">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>local_shipping</mat-icon>
         <span>Shipment Orders</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/analyze']">
-        <mat-icon>analytics</mat-icon>
+        <mat-icon>bar_chart</mat-icon>
         <span>Analytics</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/stock']">
-        <mat-icon>analytics</mat-icon>
+        <mat-icon>list_alt</mat-icon>
         <span>Take stock</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/users']">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>group</mat-icon>
         <span>Users</span>
       </button>
 
       <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/bills']">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>receipt_long</mat-icon>
         <span>Bills</span>
       </button>
     </mat-menu>
@@ -61,11 +61,11 @@
         </a>
         <mat-menu #menu="matMenu">
           <button [routerLink]="['account', 1]" mat-menu-item>
-            <mat-icon>account_circle</mat-icon>
+            <mat-icon>edit</mat-icon>
             <span>Edit Profile</span>
           </button>
           <button (click)="logout()" mat-menu-item>
-            <mat-icon>logout</mat-icon>
+            <mat-icon>exit_to_app</mat-icon>
             <span>Logout</span>
           </button>
         </mat-menu>

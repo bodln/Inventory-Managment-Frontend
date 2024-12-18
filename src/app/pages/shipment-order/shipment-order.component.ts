@@ -151,4 +151,12 @@ export class ShipmentOrderComponent {
       }
     });
   }
+
+  getRowClass(order: ShipmentOrderResponse): string {
+      if (order.unloaded) {
+        return 'unloaded';
+      } else {
+        return 'arrived';
+      }
+    }
 }

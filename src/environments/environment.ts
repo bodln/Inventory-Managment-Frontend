@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    apiUrl: 'https://evolved-gladly-possum.ngrok-free.app/api',
-  };
+  production: true,
+  apiUrl: 'https://evolved-gladly-possum.ngrok-free.app/api'
+};
