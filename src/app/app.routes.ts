@@ -12,6 +12,7 @@ import { ShipmentOrderComponent } from './pages/shipment-order/shipment-order.co
 import { ItemAnalysisComponent } from './pages/item-analysis/item-analysis.component';
 import { StockTableComponent } from './pages/stock-table/stock-table.component';
 import { BillsTableComponent } from './pages/bills-table/bills-table.component';
+import { UsersComponent } from './pages/users/users.component';
 
 export const routes: Routes = [
     {
@@ -70,6 +71,12 @@ export const routes: Routes = [
         component:BillsTableComponent,
         canActivate: [RoleGuard],
         data: { roles: ['Admin', 'Manager'] }
+    },
+    {
+        path:'users', 
+        component:UsersComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['Admin'] }
     },
     {
         path:'', component:HomeComponent
