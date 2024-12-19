@@ -19,7 +19,7 @@ export class AuthService {
 
   login(data: LoginRequest): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>(`${this.apiUrl}/User/LogIn`, data)
+      .post<AuthResponse>(`${this.apiUrl}/User/LogIns`, data)
       .pipe(
         map((response) => {
           localStorage.setItem(this.tokenKey, response.token);
