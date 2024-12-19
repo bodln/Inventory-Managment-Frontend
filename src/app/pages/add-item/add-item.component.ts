@@ -50,7 +50,6 @@ export class AddItemComponent {
   addItem() {
     if (this.form.valid) {
       console.log(this.form.value);
-
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

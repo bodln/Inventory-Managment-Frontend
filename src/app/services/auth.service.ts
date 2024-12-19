@@ -23,7 +23,7 @@ export class AuthService {
       .pipe(
         map((response) => {
           localStorage.setItem(this.tokenKey, response.token);
-          console.log("Login response: " + response);
+          console.log("Login response: " + response.token);
           return response;
         })
       );
