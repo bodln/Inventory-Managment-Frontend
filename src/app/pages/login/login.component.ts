@@ -31,17 +31,27 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.form.value).subscribe({
       next: (response) => {
-        this.matSnackBar.open("Log in finished, some token received.", 'Close', {
-          duration: 5000,
-          horizontalPosition: 'center',
-        });
-        this.router.navigate(['/']);
+        if(response.code == 200){
+          this.matSnackBar.open("Log in finished, some token received.", 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+          this.router.navigate(['/']);
+        }else if(response.code == 401){
+          this.matSnackBar.open("Wrong information prvoided.", 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+        }
+
+        console.log("Log in status code: " + response.code);
       },
       error: (error) => {
         this.matSnackBar.open("Something went wrong!", 'Close', {
           duration: 5000,
           horizontalPosition: 'center',
         });
+        console.log("Log in error: " + error.message)
       },
     });
   }
