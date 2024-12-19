@@ -22,8 +22,9 @@ export class AuthService {
       .post<AuthResponse>(`${this.apiUrl}/User/LogIns`, data)
       .pipe(
         map((response) => {
-          localStorage.setItem(this.tokenKey, response.token);
-          console.log("Login response: " + response.token);
+          if(response.code == 200){
+            localStorage.setItem(this.tokenKey, response.token);
+          }
           return response;
         })
       );
