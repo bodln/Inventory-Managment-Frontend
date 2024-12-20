@@ -13,6 +13,7 @@ import { ItemAnalysisComponent } from './pages/item-analysis/item-analysis.compo
 import { StockTableComponent } from './pages/stock-table/stock-table.component';
 import { BillsTableComponent } from './pages/bills-table/bills-table.component';
 import { UsersComponent } from './pages/users/users.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 export const routes: Routes = [
     {
@@ -75,6 +76,12 @@ export const routes: Routes = [
     {
         path:'users', 
         component:UsersComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['Admin'] }
+    },
+    { 
+        path: 'edit-user', 
+        component: EditUserComponent,
         canActivate: [RoleGuard],
         data: { roles: ['Admin'] }
     },
