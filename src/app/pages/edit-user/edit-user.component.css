@@ -1,0 +1,25 @@
+.read-only-field {
+  display: block;
+  padding: 8px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+span {
+  font-size: 1.2rem;
+}
+
+.no-hint {
+  margin-bottom: -20px;
+}
+
+
+

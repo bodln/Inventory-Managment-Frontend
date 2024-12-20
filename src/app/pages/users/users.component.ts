@@ -47,7 +47,7 @@ export class UsersComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      'ngrok-skip-browser-warning': 'true', 
+      'ngrok-skip-browser-warning': 'true',
     });
 
     this.http
@@ -66,8 +66,6 @@ export class UsersComponent {
         this.originalUsers = users;
         this.filteredUsers$.next(users);
       });
-
-    console.log(this.filteredUsers$)
   }
 
   filterItems(): UserData[] {
@@ -101,7 +99,7 @@ export class UsersComponent {
   }
 
   editUser(user: UserData) {
-    this.router.navigate(['/edit-item', user.email]);
+    this.router.navigate(['/edit-user'], { state: { user } });
   }
 
   deleteUser(user: UserData) {
@@ -113,15 +111,17 @@ export class UsersComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const token = localStorage.getItem('token');
-        
+
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`,
-          'ngrok-skip-browser-warning': 'true', 
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
         });
-        const body = { email: user.email };
+
+        const body = JSON.stringify(user.email);
 
         this.http
-          .post(`${environment.apiUrl}/User/RemoveUser`, { headers, body }) // fix this saying it is unauthorized
+          .post(`${environment.apiUrl}/User/RemoveUser`, body, { headers })
           .subscribe({
             next: () => {
               this.originalUsers = this.originalUsers.filter(

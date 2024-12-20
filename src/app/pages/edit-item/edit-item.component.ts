@@ -35,10 +35,9 @@ export class EditItemComponent {
   fb = inject(FormBuilder);
   hide = true;
   form!: FormGroup;
-  itemGuid : string = this.route.snapshot.paramMap.get('guid') || '';
+  itemGuid: string = this.route.snapshot.paramMap.get('guid') || '';
 
   ngOnInit(): void {
-
     this.form = this.fb.group({
       guid: [''],
       naziv: ['', Validators.required],
@@ -58,10 +57,10 @@ export class EditItemComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      'ngrok-skip-browser-warning': 'true', 
+      'ngrok-skip-browser-warning': 'true',
     });
 
-    this.http.get<ItemRequestResponse>(`${environment.apiUrl}/Item/${this.itemGuid}`, {headers})
+    this.http.get<ItemRequestResponse>(`${environment.apiUrl}/Item/${this.itemGuid}`, { headers })
       .subscribe({
         next: (item) => this.form.patchValue(item),
         error: () => this.matSnackBar.open('Failed to load item details', 'Close', {
@@ -75,11 +74,11 @@ export class EditItemComponent {
     if (this.form.valid) {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'ngrok-skip-browser-warning': 'true', 
-    });
+        Authorization: `Bearer ${token}`,
+        'ngrok-skip-browser-warning': 'true',
+      });
 
-      this.http.put(`${environment.apiUrl}/Item/${this.itemGuid}`, this.form.value, {headers})
+      this.http.put(`${environment.apiUrl}/Item/${this.itemGuid}`, this.form.value, { headers })
         .subscribe({
           next: () => {
             this.matSnackBar.open('Item updated successfully', 'Close', {
