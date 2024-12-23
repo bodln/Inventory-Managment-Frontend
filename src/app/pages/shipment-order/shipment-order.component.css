@@ -51,10 +51,14 @@ td.mat-cell {
 }
 
 .arrived {
-  background-color: #ffcccc; /* Red for over capacity */
+  background-color: #ffcccc;
 }
 
 .unloaded {
-  background-color: #ccffcc; /* Green for under capacity */
+  background-color: #ccffcc;
+}
+
+.notarrived {
+  background-color: #ffffcc; 
 }
   

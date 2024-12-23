@@ -38,12 +38,12 @@ export class ShipmentOrderComponent {
   router = inject(Router);
   dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['itemName', 'quantity', 'manager', 'dateOfArrival', 'price', 'unloaded', 'actions'];
+  displayedColumns: string[] = ['itemName', 'quantity', 'manager', 'dateOfCreation', 'dateOfArrival', 'price', 'unloaded', 'actions'];
   originalOrders: ShipmentOrderResponse[] = [];
   filteredOrders$: BehaviorSubject<ShipmentOrderResponse[]> = new BehaviorSubject<ShipmentOrderResponse[]>([]);
 
   searchQuery: string = '';
-  sortField: string = ''; 
+  sortField: string = '';
 
   constructor() {
     this.fetchShipmentOrders();
@@ -53,7 +53,7 @@ export class ShipmentOrderComponent {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      'ngrok-skip-browser-warning': 'true', 
+      'ngrok-skip-browser-warning': 'true',
     });
 
     this.http
@@ -88,6 +88,8 @@ export class ShipmentOrderComponent {
       filtered.sort((a, b) => a.item.naziv.localeCompare(b.item.naziv));
     } else if (this.sortField === 'unloaded') {
       filtered.sort((a, b) => Number(a.unloaded) - Number(b.unloaded));
+    } else if (this.sortField === 'dateOfArrival') {
+      filtered.sort((a, b) => (a.dateOfArrival === null ? -1 : b.dateOfArrival === null ? 1 : 0));
     }
 
     return filtered;
@@ -113,6 +115,7 @@ export class ShipmentOrderComponent {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true',
         });
 
         this.http
@@ -153,11 +156,39 @@ export class ShipmentOrderComponent {
     });
   }
 
+  markAsArrived(order: ShipmentOrderResponse) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'ngrok-skip-browser-warning': 'true',
+    });
+
+    this.http
+      .put(`${environment.apiUrl}/ShipmentOrder/Arrive/${order.guid}`, { headers })
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Order successfully marked as arrived.', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+          this.fetchShipmentOrders();
+        },
+        error: () => {
+          this.snackBar.open('Failed to mark order as arrived.', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+        },
+      });
+  }
+
   getRowClass(order: ShipmentOrderResponse): string {
-      if (order.unloaded) {
-        return 'unloaded';
-      } else {
-        return 'arrived';
-      }
+    if (order.unloaded) {
+      return 'unloaded';
+    } else if (order.dateOfArrival == null) {
+      return 'notarrived';
+    } else {
+      return 'arrived';
     }
+  }
 }
