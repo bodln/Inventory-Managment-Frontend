@@ -45,7 +45,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let analysis">
-          <button mat-icon-button (click)="viewAnalysis(analysis)" matTooltip="View Analysis">
+          <button mat-icon-button (click)="analyze(analysis.item)" matTooltip="View Analysis">
             <mat-icon>analytics</mat-icon>
           </button>
         </td>
