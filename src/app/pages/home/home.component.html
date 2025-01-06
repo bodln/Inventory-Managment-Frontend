@@ -19,5 +19,23 @@
       }
     </div>
 
+    <div class="flex items-center justify-center gap-4 mt-10">
+      <button *ngIf="isAdmin() || isManager()" 
+              mat-menu-item 
+              [routerLink]="['/items']"
+              class="custom-button">
+        <mat-icon class="custom-icon">inventory</mat-icon>
+        <span>Browse Items</span>
+      </button>
+
+      <button *ngIf="isAdmin() || isWarehouseman()" 
+              mat-menu-item 
+              [routerLink]="['/inventories']"
+              class="custom-button">
+        <mat-icon class="custom-icon">storage</mat-icon>
+        <span>Manage Inventory</span>
+      </button>
+    </div>
+
   </div>
 </div>

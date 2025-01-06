@@ -1,0 +1,32 @@
+.custom-button {
+  background-color: white;
+  border: 2px solid gray;
+  color: gray;
+  padding: 0 14px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  width: 210px;
+  height: 70px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.custom-button:hover {
+  background-color: #f0f0f0;
+  border-color: black;
+  color: black;
+}
+
+.custom-icon {
+  font-size: 2.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: inline-block;
+  color: inherit;
+  flex-shrink: 0;
+}

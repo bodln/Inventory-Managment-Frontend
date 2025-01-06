@@ -1,15 +1,15 @@
-<div>
-  <mat-toolbar color="primary" style="padding:10px 50px">
+<div class="toolbar-container">
+  <mat-toolbar color="primary" class="custom-toolbar">
     <button mat-icon-button [matMenuTriggerFor]="mainMenu">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mainMenu="matMenu">
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/items']">
+      <button *ngIf="isAdmin() || isManager()" mat-menu-item [routerLink]="['/items']">
         <mat-icon>inventory</mat-icon>
         <span>Items</span>
       </button>
 
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/inventories']">
+      <button *ngIf="isAdmin() || isWarehouseman()" mat-menu-item [routerLink]="['/inventories']">
         <mat-icon>storage</mat-icon>
         <span>Inventories</span>
       </button>
@@ -45,25 +45,17 @@
 
     @if(isLoggedIn()){
     <div *ngIf="authService.getUserDetail() as userDetail">
-      <div class="flex gap-3 items-center">
-        <a [matMenuTriggerFor]="menu" class="flex gap2 cursor-pointer items-center">
-          <div class="bg-red-400 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 flex justify-center items-center">
+      <div class="user-profile">
+        <a [matMenuTriggerFor]="menu" class="user-details">
+          <div class="user-initial">
             {{ userDetail!.email[0].toUpperCase() }}
           </div>
-          <div class="text-white flex flex-col">
-            <h1 class="p-0 m-0 font-medium">
-              {{ userDetail?.email }}
-            </h1>
-            <p class="p-0 m-0 font-medium text-xs">
-              {{ userDetail?.roles }}
-            </p>
+          <div class="user-info">
+            <h1 class="user-email">{{ userDetail?.email }}</h1>
+            <p class="user-role">{{ userDetail?.roles }}</p>
           </div>
         </a>
         <mat-menu #menu="matMenu">
-          <button [routerLink]="['account', 1]" mat-menu-item>
-            <mat-icon>edit</mat-icon>
-            <span>Edit Profile</span>
-          </button>
           <button (click)="logout()" mat-menu-item>
             <mat-icon>exit_to_app</mat-icon>
             <span>Logout</span>
@@ -72,11 +64,9 @@
       </div>
     </div>
     }@else{
-    <div>
-      <div class="flex gap5 items-center">
-        <a mat-button routerLink="/login">Login</a>
-        <a mat-button routerLink="/register">Register User</a>
-      </div>
+    <div class="auth-links">
+      <a mat-button routerLink="/login">Login</a>
+      <a mat-button routerLink="/register">Register User</a>
     </div>
     }
   </mat-toolbar>
