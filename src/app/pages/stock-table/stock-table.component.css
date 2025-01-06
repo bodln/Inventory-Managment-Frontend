@@ -22,11 +22,11 @@ td.mat-cell {
 }
 
 .over-capacity {
-  background-color: #ffcccc; /* Red for over capacity */
+  background-color: #ffcccc;
 }
 
 .under-capacity {
-  background-color: #ccffcc; /* Green for under capacity */
+  background-color: #ffcccc; 
 }
 
 .search-bar {
@@ -38,10 +38,35 @@ td.mat-cell {
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-  width: 100%; /* Full width to align with the table */
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .sort-buttons {
   display: flex;
   gap: 10px;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-item {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.over-capacity {
+  background-color: #ffffcc;
+}
+
+.just-right {
+  background-color: #ccffcc;
+}
+
+.under-capacity {
+  background-color: #ffcccc; 
 }

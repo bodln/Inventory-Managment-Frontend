@@ -17,6 +17,11 @@
       <button mat-button (click)="onSortBy('unloaded')">Sort by Unloaded</button>
       <button mat-button (click)="onSortBy('dateOfArrival')">Sort by Arrival</button>
     </div>
+    <div class="legend">
+      <div class="legend-item unloaded"></div> Unloaded
+      <div class="legend-item arrived"></div> Arrived
+      <div class="legend-item notarrived"></div> Not Arrived
+    </div>
   </div>
 
   <table mat-table [dataSource]="filteredOrders$" class="mat-elevation-z8 order-table">

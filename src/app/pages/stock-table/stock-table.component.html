@@ -3,14 +3,8 @@
 <div class="table-container">
   <mat-form-field appearance="fill" class="search-bar">
     <mat-label>Search Items</mat-label>
-    <input
-      matInput
-      [(ngModel)]="searchText"
-      (ngModelChange)="applyFilter()"
-      placeholder="Search by item name"
-    />
+    <input matInput [(ngModel)]="searchText" (ngModelChange)="applyFilter()" placeholder="Search by item name" />
   </mat-form-field>
-
   <div class="header-container">
     <div class="sort-buttons">
       <button mat-button (click)="setSortByCapacity('none')" [disabled]="sortByCapacity === 'none'">
@@ -22,6 +16,11 @@
       <button mat-button (click)="setSortByCapacity('under')" [disabled]="sortByCapacity === 'under'">
         Under Capacity
       </button>
+    </div>
+    <div class="legend">
+      <div class="legend-item just-right"></div> In Bounds
+      <div class="legend-item under-capacity"></div> Under Capacity
+      <div class="legend-item over-capacity"></div> Over Capacity
     </div>
   </div>
 
@@ -64,9 +63,6 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let stock">
-        <button mat-icon-button (click)="analyzeItem(stock)" matTooltip="Analyze Item">
-          <mat-icon>analytics</mat-icon>
-        </button>
         <button mat-icon-button (click)="orderMore(stock.item)" matTooltip="Order More">
           <mat-icon>shopping_cart</mat-icon>
         </button>

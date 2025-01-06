@@ -84,7 +84,7 @@ export class StockTableComponent {
     } else if (stock.underCapacity) {
       return 'under-capacity';
     }
-    return '';
+    return 'just-right';
   }
 
   applyFilter() {
