@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, signal, WritableSignal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -42,14 +42,18 @@ export class InventoriesComponent {
   private originalInventories: InventoryResponse[] = [];
   filteredInventories$: BehaviorSubject<InventoryResponse[]> = new BehaviorSubject<InventoryResponse[]>([]);
 
+  count: WritableSignal<number> = signal(0);
+
   searchQuery: string = '';
   sortField: string = ''; 
 
   constructor() {
-    this.fetchInventories(); // Fetch inventories on initialization
+    this.fetchInventories();
+    effect(() => {
+      console.log(`The count is: ${this.count()}`);
+    }); 
   }
 
-  // Method to fetch inventories from the server
   fetchInventories() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -77,8 +81,6 @@ export class InventoriesComponent {
       });
   }
   
-
-  // Filter and sort inventories based on search query and selected sort field
   filterInventories(): InventoryResponse[] {
     const lowerSearchQuery = this.searchQuery.toLowerCase();
     let filtered = this.originalInventories;
@@ -100,23 +102,20 @@ export class InventoriesComponent {
     return filtered;
   }
 
-  // Called when the search query changes
   onSearchQueryChange() {
     this.filteredInventories$.next(this.filterInventories());
   }
 
-  // Sort inventories by the specified field
   onSortBy(field: string) {
     this.sortField = field;
     this.filteredInventories$.next(this.filterInventories());
+    this.count.set(this.count() + 1);
   }
 
-  // Navigate to the edit page for a specific inventory
   editInventory(inventory: InventoryResponse) {
     this.router.navigate(['/edit-inventory', inventory.guid]);
   }
 
-  // Move inventory to a new location and refresh the table
   moveInventory(inventory: InventoryResponse) {
     const dialogRef = this.dialog.open(MoveInventoryComponent, {
       width: '400px',
@@ -126,12 +125,11 @@ export class InventoriesComponent {
     dialogRef.afterClosed().subscribe((location) => {
       if (location) {
         console.log('Moved inventory with item:', inventory.item.naziv);
-        this.fetchInventories(); // Fetch inventories after moving
+        this.fetchInventories();
       }
     });
   }
 
-  // Delete an inventory and refresh the table
   deleteInventory(inventory: InventoryResponse) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialog, {
       width: '300px',
