@@ -29,7 +29,7 @@ export const routes: Routes = [
         path: 'add-item', 
         component: AddItemComponent,
         canActivate: [RoleGuard],
-        data: { roles: ['Admin', 'Manager'] }
+        data: { roles: ['Admin', 'Manager', 'Warehouseman'] }
     },
     { 
         path: 'edit-item/:guid', 
@@ -41,13 +41,13 @@ export const routes: Routes = [
         path:'items', 
         component:ItemsComponent,
         canActivate: [RoleGuard],
-        data: { roles: ['Admin', 'Manager'] }
+        data: { roles: ['Admin', 'Manager', 'Warehouseman'] }
     },
     {
         path:'inventories', 
         component:InventoriesComponent,
         canActivate: [RoleGuard],
-        data: { roles: ['Admin', 'Manager'] }
+        data: { roles: ['Admin', 'Manager', 'Warehouseman'] }
     },
     {
         path:'shipmentorders', 

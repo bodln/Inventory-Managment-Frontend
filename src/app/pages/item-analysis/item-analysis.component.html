@@ -28,9 +28,9 @@
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef> Last Location </th>
         <td mat-cell *matCellDef="let analysis"> 
-          {{ analysis.locations[0]?.locationName || 'N/A' }} 
+          {{ analysis.locations?.slice(-1)[0]?.locationName || 'N/A' }} 
         </td>
-      </ng-container>
+      </ng-container>      
   
       <ng-container matColumnDef="unitsSold">
         <th mat-header-cell *matHeaderCellDef> Units Sold </th>
