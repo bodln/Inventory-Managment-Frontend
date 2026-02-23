@@ -10,9 +10,8 @@ import { environment } from '../../../environments/environment';
 import { ShipmentOrderRequest } from '../../interfaces/shipment-order-request';
 
 @Component({
-  selector: 'app-order-item-dialog',
-  standalone: true,
-  template: `
+    selector: 'app-order-item-dialog',
+    template: `
     <h1 mat-dialog-title>Enter Quantity for {{ data.itemName }}</h1>
     <div mat-dialog-content>
       <mat-form-field>
@@ -25,14 +24,14 @@ import { ShipmentOrderRequest } from '../../interfaces/shipment-order-request';
       <button mat-button (click)="onDone()">Done</button>
     </div>
   `,
-  imports:[
-    FormsModule,       
-    MatDialogModule,      
-    MatFormFieldModule,   
-    MatInputModule,       
-    MatButtonModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule
+    ]
 })
 export class OrderItemDialogComponent {
   quantity: string = '';

@@ -18,19 +18,18 @@ import { MoveInventoryComponent } from '../../components/move-inventory/move-inv
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-inventory-table',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './inventories.component.html',
-  styleUrls: ['./inventories.component.css'],
+    selector: 'app-inventory-table',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './inventories.component.html',
+    styleUrls: ['./inventories.component.css']
 })
 export class InventoriesComponent {
   http = inject(HttpClient);

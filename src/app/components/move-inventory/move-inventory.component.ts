@@ -10,9 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-move-inventory',
-  standalone: true,
-  template: `
+    selector: 'app-move-inventory',
+    template: `
     <div mat-dialog-content>
       <mat-form-field>
         <mat-label>New Loaction</mat-label>
@@ -28,15 +27,15 @@ import { FormsModule } from '@angular/forms';
       <button mat-button (click)="onDone()">Done</button>
     </div>
   `,
-  imports:[
-    FormsModule,       
-    MatDialogModule,      
-    MatFormFieldModule,   
-    MatInputModule,       
-    MatButtonModule,
-    MatSnackBarModule
-  ],
-  styleUrl: './move-inventory.component.css'
+    imports: [
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule
+    ],
+    styleUrl: './move-inventory.component.css'
 })
 export class MoveInventoryComponent {
   locationName: string = '';
