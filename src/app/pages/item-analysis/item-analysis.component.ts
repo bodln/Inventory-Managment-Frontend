@@ -18,19 +18,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { ItemAnalysisDialogComponent } from '../../components/item-analysis-dialog/item-analysis-dialog.component';
 
 @Component({
-  selector: 'app-item-analysis',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './item-analysis.component.html',
-  styleUrls: ['./item-analysis.component.css'],
+    selector: 'app-item-analysis',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './item-analysis.component.html',
+    styleUrls: ['./item-analysis.component.css']
 })
 export class ItemAnalysisComponent {
   http = inject(HttpClient);

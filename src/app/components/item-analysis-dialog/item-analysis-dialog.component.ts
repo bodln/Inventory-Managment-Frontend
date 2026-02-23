@@ -11,9 +11,8 @@ import { LocationHistoryResponse } from '../../interfaces/location-history-respo
 import { AnalysisResponse } from '../../interfaces/analysis-reponse';
 
 @Component({
-  selector: 'app-item-analysis-dialog',
-  standalone: true,
-  template: `
+    selector: 'app-item-analysis-dialog',
+    template: `
     <h1 mat-dialog-title>Item Analysis: {{ data.analysis.item.naziv }}</h1>
     <div mat-dialog-content>
       <h2>Item Details</h2>
@@ -62,16 +61,16 @@ import { AnalysisResponse } from '../../interfaces/analysis-reponse';
       <button mat-button (click)="onClose()">Close</button>
     </div>
   `,
-  imports: [
-    CommonModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule 
-  ],
-  styleUrls: ['./item-analysis-dialog.component.css']
+    imports: [
+        CommonModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTableModule
+    ],
+    styleUrls: ['./item-analysis-dialog.component.css']
 })
 export class ItemAnalysisDialogComponent {
   displayedColumns: string[] = ['locationName', 'warehouseman', 'dateOfStoring'];

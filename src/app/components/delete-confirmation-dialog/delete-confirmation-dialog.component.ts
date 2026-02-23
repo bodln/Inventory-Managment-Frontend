@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-delete-confirmation-dialog',
-  template: `
+    selector: 'app-delete-confirmation-dialog',
+    template: `
     <div style="width: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); padding: 20px; background: #fff;">
       <h1 style="font-size: 1.5em; font-weight: 500; color: #f44336; margin: 0; text-align: center;">
         Confirm Deletion
@@ -31,6 +31,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       </div>
     </div>
   `,
+    standalone: false
 })
 export class DeleteConfirmationDialog {
   constructor(

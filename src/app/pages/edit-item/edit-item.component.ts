@@ -12,19 +12,18 @@ import { environment } from '../../../environments/environment';
 import { ItemRequestResponse } from '../../interfaces/item-request-response';
 
 @Component({
-  selector: 'app-edit-item',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    RouterLink,
-    MatSnackBarModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  templateUrl: './edit-item.component.html',
-  styleUrl: './edit-item.component.css'
+    selector: 'app-edit-item',
+    imports: [
+        MatInputModule,
+        RouterLink,
+        MatSnackBarModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    templateUrl: './edit-item.component.html',
+    styleUrl: './edit-item.component.css'
 })
 export class EditItemComponent {
   authService = inject(AuthService);

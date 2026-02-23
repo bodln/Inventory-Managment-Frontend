@@ -22,19 +22,18 @@ import { StockResponse } from '../../interfaces/stock-response';
 import { AnalysisResponse } from '../../interfaces/analysis-reponse';
 
 @Component({
-  selector: 'app-items-table',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css'],
+    selector: 'app-items-table',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './items.component.html',
+    styleUrls: ['./items.component.css']
 })
 export class ItemsComponent {
   http = inject(HttpClient);

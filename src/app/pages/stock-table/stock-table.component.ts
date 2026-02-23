@@ -18,19 +18,18 @@ import { ItemRequestResponse } from '../../interfaces/item-request-response';
 import { OrderItemDialogComponent } from '../../components/order-item-dialog/order-item-dialog.component';
 
 @Component({
-  selector: 'app-stock-table',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './stock-table.component.html',
-  styleUrls: ['./stock-table.component.css'],
+    selector: 'app-stock-table',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './stock-table.component.html',
+    styleUrls: ['./stock-table.component.css']
 })
 export class StockTableComponent {
   http = inject(HttpClient);

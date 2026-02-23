@@ -11,19 +11,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-add-item',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    RouterLink,
-    MatSnackBarModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  templateUrl: './add-item.component.html',
-  styleUrl: './add-item.component.css'
+    selector: 'app-add-item',
+    imports: [
+        MatInputModule,
+        RouterLink,
+        MatSnackBarModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    templateUrl: './add-item.component.html',
+    styleUrl: './add-item.component.css'
 })
 export class AddItemComponent {
   authService = inject(AuthService);

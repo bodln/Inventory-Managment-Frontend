@@ -11,9 +11,8 @@ import { BillOfSaleRequest } from '../../interfaces/bill-of-sale-request';
 import { OrderItemDialogComponent } from '../order-item-dialog/order-item-dialog.component';
 
 @Component({
-  selector: 'app-sell-item-dialog',
-  standalone: true,
-  template: `
+    selector: 'app-sell-item-dialog',
+    template: `
     <div mat-dialog-content>
       <mat-form-field>
         <mat-label>Quantity</mat-label>
@@ -37,14 +36,14 @@ import { OrderItemDialogComponent } from '../order-item-dialog/order-item-dialog
       <button mat-button (click)="onDone()">Done</button>
     </div>
   `,
-  imports: [
-    FormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule
+    ]
 })
 export class SellItemDialogComponent {
   quantity: string = '';

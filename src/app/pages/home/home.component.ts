@@ -6,16 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    RouterLink,
-    CommonModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [
+        RouterLink,
+        CommonModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
   authService = inject(AuthService);

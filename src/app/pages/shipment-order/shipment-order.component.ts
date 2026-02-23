@@ -18,19 +18,18 @@ import { ShipmentOrderResponse } from '../../interfaces/shipment-order-response'
 import { CompleteOrderDialogComponent } from '../../components/complete-order-dialog/dialog.component';
 
 @Component({
-  selector: 'app-shipment-order',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './shipment-order.component.html',
-  styleUrls: ['./shipment-order.component.css'],
+    selector: 'app-shipment-order',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './shipment-order.component.html',
+    styleUrls: ['./shipment-order.component.css']
 })
 export class ShipmentOrderComponent {
   http = inject(HttpClient);

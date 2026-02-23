@@ -16,19 +16,18 @@ import { environment } from '../../../environments/environment';
 import { DeleteConfirmationDialog } from '../../components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
-  selector: 'app-users',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule,
-    MatTooltipModule
-  ],
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+    selector: 'app-users',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule,
+        MatTooltipModule
+    ],
+    templateUrl: './users.component.html',
+    styleUrl: './users.component.css'
 })
 export class UsersComponent {
   http = inject(HttpClient);

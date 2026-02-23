@@ -7,17 +7,16 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    RouterLink,
-    MatSnackBarModule,
-    MatIconModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [
+        MatInputModule,
+        RouterLink,
+        MatSnackBarModule,
+        MatIconModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 
 export class LoginComponent implements OnInit {

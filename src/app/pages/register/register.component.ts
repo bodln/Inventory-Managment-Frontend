@@ -9,19 +9,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    RouterLink,
-    MatSnackBarModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    imports: [
+        MatInputModule,
+        RouterLink,
+        MatSnackBarModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   authService = inject(AuthService);

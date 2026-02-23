@@ -10,9 +10,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-location-dialog',
-  standalone: true,
-  template: `
+    selector: 'app-location-dialog',
+    template: `
     <h1 mat-dialog-title>Enter Location</h1>
     <div mat-dialog-content>
       <mat-form-field>
@@ -25,14 +24,14 @@ import { environment } from '../../../environments/environment';
       <button mat-button (click)="onDone()">Done</button>
     </div>
   `,
-  imports:[
-    FormsModule,       
-    MatDialogModule,      
-    MatFormFieldModule,   
-    MatInputModule,       
-    MatButtonModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule
+    ]
 })
 export class CompleteOrderDialogComponent {
   location: string = '';

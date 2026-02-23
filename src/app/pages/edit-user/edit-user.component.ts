@@ -13,20 +13,19 @@ import { UserData } from '../../interfaces/user-data';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-user',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    RouterLink,
-    MatSnackBarModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.css'
+    selector: 'app-edit-user',
+    imports: [
+        CommonModule,
+        MatInputModule,
+        RouterLink,
+        MatSnackBarModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    templateUrl: './edit-user.component.html',
+    styleUrl: './edit-user.component.css'
 })
 export class EditUserComponent {
   authService = inject(AuthService);

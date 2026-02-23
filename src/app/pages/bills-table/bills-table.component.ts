@@ -15,18 +15,17 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-bills-table',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    FormsModule
-  ],
-  templateUrl: './bills-table.component.html',
-  styleUrls: ['./bills-table.component.css'],
+    selector: 'app-bills-table',
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        FormsModule
+    ],
+    templateUrl: './bills-table.component.html',
+    styleUrls: ['./bills-table.component.css']
 })
 export class BillsTableComponent {
   http = inject(HttpClient);
