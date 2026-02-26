@@ -1,25 +1,23 @@
-.read-only-field {
-  display: block;
-  padding: 8px;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.87);
-  background: rgba(0, 0, 0, 0.04);
-  border-radius: 4px;
+::ng-deep .mat-mdc-form-field-subscript-wrapper { display: none; }
+
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
 }
 
-input[type="checkbox"] {
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #f59e0b !important;
 }
 
-span {
-  font-size: 1.2rem;
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #d97706 !important;
 }
 
-.no-hint {
-  margin-bottom: -20px;
+/* Custom checkbox visual override - the real input is sr-only, peer div is shown */
+input[type="checkbox"]:checked + div {
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
 }
-
-
-

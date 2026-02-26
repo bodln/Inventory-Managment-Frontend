@@ -1,40 +1,65 @@
-<div class="h-screen flex items-center justify-center">
-    <form class="shadow-md rounded-md p-5 bg-white w-1/6" [formGroup]="form" (ngSubmit)="login()">
-      <div class="py-4">
-        <h1 class="font-bold py-2">
-          Login
-        </h1>
-        <h6 class="text-slate-600 text-base">
-          Login to your account
-        </h6>
-      </div>
-  
-  
-      <mat-form-field apperance="fill" class="w-full">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email" />
-        <mat-icon matPrefix>email</mat-icon>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Password</mat-label>
-        <input matInput type="{{ hide ? 'password' : 'text'}}" formControlName="password" placeholder="Password" />
-        <mat-icon matPrefix>lock</mat-icon>
-        <mat-icon (click)="hide = !hide" matSuffix>
-          {{ hide ? 'visibility_off':'visibility'}}
-        </mat-icon>
-      </mat-form-field>
-  
-      <button type="submit" [disabled]="!form.valid"
-        class="w-full border border-slate-200 rounded-md disabled:bg-purple-400 py-2 px-3 bg-purple-700 text-white font-bold">
-        Login
-      </button>
-  
-      <div class="my-5">
-        <span class="text-slate-600">
-          Don't have an account?
-        </span>
-        <a class="text-purple-700" [routerLink]="['/register']">Register</a>
-      </div>
-    </form>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-stone-900 p-4">
+
+  <!-- Subtle grid background -->
+  <div class="absolute inset-0 opacity-5"
+    style="background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px); background-size: 40px 40px;">
   </div>
+
+  <div class="relative w-full max-w-sm">
+
+    <!-- Brand -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center shadow-lg">
+          <mat-icon style="font-size:22px; width:22px; height:22px; color:#1c1917;">inventory_2</mat-icon>
+        </div>
+        <span class="text-white font-bold text-xl tracking-tight" style="font-family:'Syne',sans-serif;">StockOps</span>
+      </div>
+      <p class="text-slate-500 text-sm">Enterprise Inventory System</p>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+
+      <!-- Top amber accent bar -->
+      <div class="h-1 w-full bg-gradient-to-r from-amber-400 to-amber-500"></div>
+
+      <div class="p-8">
+        <div class="mb-7">
+          <h1 class="text-2xl font-bold text-slate-900" style="font-family:'Syne',sans-serif;">Welcome back</h1>
+          <p class="text-slate-500 text-sm mt-1">Sign in to your account to continue</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="login()">
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Email address</mat-label>
+            <input matInput placeholder="you@company.com" formControlName="email" />
+            <mat-icon matPrefix class="mr-2 text-slate-400">email</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full mt-1">
+            <mat-label>Password</mat-label>
+            <input matInput type="{{ hide ? 'password' : 'text'}}" formControlName="password" placeholder="Password" />
+            <mat-icon matPrefix class="mr-2 text-slate-400">lock</mat-icon>
+            <mat-icon (click)="hide = !hide" matSuffix class="text-slate-400 cursor-pointer select-none">
+              {{ hide ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+          </mat-form-field>
+
+          <button type="submit" [disabled]="!form.valid" class="btn-form-submit mt-4">
+            Sign In
+          </button>
+
+          <div class="mt-5 text-center text-sm">
+            <span class="text-slate-500">Don't have an account? </span>
+            <a class="text-amber-600 font-semibold hover:text-amber-700 transition-colors" [routerLink]="['/register']">Register here</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <p class="text-center text-slate-600 text-xs mt-5">Inventory Management System &copy; 2025</p>
+  </div>
+</div>

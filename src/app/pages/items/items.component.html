@@ -1,85 +1,106 @@
-<h2>Item Management</h2>
+<div class="min-h-screen bg-slate-50">
 
-<div class="table-container">
-  <mat-form-field appearance="fill" class="search-bar">
-    <mat-label>Search Items</mat-label>
-    <input
-      matInput
-      [(ngModel)]="searchQuery"
-      (ngModelChange)="onSearchQueryChange()"
-      placeholder="Enter item name to search"
-    />
-  </mat-form-field>
-
-  <div class="header-container">
-    <div class="sort-buttons">
-      <button mat-button (click)="onSortBy('name')">Sort by Name</button>
-      <button mat-button (click)="onSortBy('weight')">Sort by Weight</button>
-      <button mat-button (click)="onSortBy('price')">Sort by Price</button>
-      <button mat-button (click)="onSortBy('type')">Sort by Type</button>
+  <!-- Page Header -->
+  <div class="bg-slate-950 px-8 py-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
+          <mat-icon style="font-size:20px; width:20px; height:20px; color:#1c1917;">inventory</mat-icon>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Item Management</h1>
+          <p class="text-slate-500 text-xs">Browse, edit and manage all inventory items</p>
+        </div>
+      </div>
+      <button (click)="navigateToAddItem()" class="btn-primary">
+        <mat-icon style="font-size:17px; width:17px; height:17px;">add</mat-icon>
+        Add Item
+      </button>
     </div>
-
-    <button mat-raised-button color="primary" class="add-button" (click)="navigateToAddItem()">
-      <mat-icon>add</mat-icon> Add
-    </button>
   </div>
 
-  <table mat-table [dataSource]="filteredItems$" class="mat-elevation-z8 item-table">
-    <ng-container matColumnDef="naziv">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let item"> {{ item.naziv }} </td>
-    </ng-container>
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-8 py-6">
 
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight (kg) </th>
-      <td mat-cell *matCellDef="let item"> {{ item.weight }} </td>
-    </ng-container>
+    <!-- Controls -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mb-5">
+      <mat-form-field appearance="outline" class="w-full" style="margin-bottom:-1.34em">
+        <mat-label>Search items by name, type...</mat-label>
+        <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchQueryChange()" />
+        <mat-icon matPrefix class="mr-2 text-slate-400">search</mat-icon>
+      </mat-form-field>
+      <div class="flex flex-wrap items-center gap-2 mt-5">
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Sort:</span>
+        <button (click)="onSortBy('name')"   class="sort-btn">Name</button>
+        <button (click)="onSortBy('weight')" class="sort-btn">Weight</button>
+        <button (click)="onSortBy('price')"  class="sort-btn">Price</button>
+        <button (click)="onSortBy('type')"   class="sort-btn">Type</button>
+      </div>
+    </div>
 
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let item"> {{ item.type }} </td>
-    </ng-container>
+    <!-- Table -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <table mat-table [dataSource]="filteredItems$" class="w-full">
 
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Price ($) </th>
-      <td mat-cell *matCellDef="let item"> {{ item.price }} </td>
-    </ng-container>
+        <ng-container matColumnDef="naziv">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="font-semibold text-slate-900">{{ item.naziv }}</span>
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="maxAmount">
-      <th mat-header-cell *matHeaderCellDef> Max Amount </th>
-      <td mat-cell *matCellDef="let item"> {{ item.maxAmount }} </td>
-    </ng-container>
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef>Weight (kg)</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="mono text-slate-600">{{ item.weight }}</span>
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="minAmount">
-      <th mat-header-cell *matHeaderCellDef> Min Amount </th>
-      <td mat-cell *matCellDef="let item"> {{ item.minAmount }} </td>
-    </ng-container>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="badge badge-amber">{{ item.type }}</span>
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let item">
-        <button mat-icon-button (click)="editItem(item)" matTooltip="Edit Item">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button (click)="deleteItem(item)" matTooltip="Delete Item">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button mat-icon-button (click)="analyze(item)" matTooltip="Analyze Item">
-          <mat-icon>analytics</mat-icon>
-        </button>
-        <!-- <button mat-icon-button (click)="salesItem(item)" matTooltip="View Sales">
-          <mat-icon>sell</mat-icon>
-        </button> -->
-        <button mat-icon-button (click)="orderMore(item)" matTooltip="Order More">
-          <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <button mat-icon-button (click)="sell(item)" matTooltip="Sell some">
-          <mat-icon>monetization_on</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price ($)</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="mono font-medium text-slate-900">${{ item.price }}</span>
+          </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+        <ng-container matColumnDef="maxAmount">
+          <th mat-header-cell *matHeaderCellDef>Max Qty</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="mono text-slate-600">{{ item.maxAmount }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="minAmount">
+          <th mat-header-cell *matHeaderCellDef>Min Qty</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="mono text-slate-600">{{ item.minAmount }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let item">
+            <div class="flex items-center gap-0.5">
+              <button mat-icon-button (click)="editItem(item)"   matTooltip="Edit Item">    <mat-icon>edit</mat-icon>           </button>
+              <button mat-icon-button (click)="deleteItem(item)" matTooltip="Delete Item">  <mat-icon>delete</mat-icon>         </button>
+              <button mat-icon-button (click)="analyze(item)"    matTooltip="Analyze">      <mat-icon>analytics</mat-icon>      </button>
+              <button mat-icon-button (click)="orderMore(item)"  matTooltip="Order More">   <mat-icon>shopping_cart</mat-icon>  </button>
+              <button mat-icon-button (click)="sell(item)"       matTooltip="Sell">         <mat-icon>monetization_on</mat-icon></button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+  </div>
 </div>

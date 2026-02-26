@@ -1,60 +1,124 @@
-<div class="h-screen flex items-center justify-center">
-  <form class="shadow-md rounded-md p-5 bg-white w-1/2" [formGroup]="form" (ngSubmit)="updateItem()">
-    <div class="py-4">
-      <h1 class="font-bold py-2">Edit User</h1>
-      <h6 class="text-slate-600 text-base">Edit the details of the user</h6>
+<div class="min-h-screen bg-slate-50 flex items-start justify-center pt-12 pb-12 px-4">
+
+  <div class="w-full max-w-lg">
+
+    <!-- Context breadcrumb -->
+    <div class="flex items-center gap-2 mb-6">
+      <div class="w-8 h-8 bg-amber-400 rounded-lg flex items-center justify-center">
+        <mat-icon style="font-size:18px; width:18px; height:18px; color:#1c1917;">people</mat-icon>
+      </div>
+      <span class="text-xs font-semibold text-slate-500 uppercase tracking-widest">User Management</span>
+      <mat-icon class="text-slate-400" style="font-size:14px; width:14px; height:14px;">chevron_right</mat-icon>
+      <span class="text-xs font-semibold text-slate-800 uppercase tracking-widest">Edit User</span>
     </div>
 
-    <mat-form-field appearance="fill" class="w-full no-hint">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="User email" />
-      <mat-icon matPrefix>label</mat-icon>
-    </mat-form-field>
+    <!-- Card -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="h-1 bg-gradient-to-r from-slate-600 to-slate-700"></div>
 
-    <div class="py-4">
-      <div class="flex space-x-4">
-        <div class="flex items-center space-x-2">
-          <input type="checkbox" formControlName="admin" class="w-5 h-5" [checked]="user?.roles?.includes('Admin')" />
-          <span class="text-sm">Admin</span>
+      <div class="p-8">
+        <div class="mb-7">
+          <h1 class="text-2xl font-bold text-slate-900" style="font-family:'Syne',sans-serif;">Edit User</h1>
+          <p class="text-slate-500 text-sm mt-1">Update the details and roles for this user</p>
         </div>
-        <div class="flex items-center space-x-2">
-          <input type="checkbox" formControlName="warehouseman" class="w-5 h-5"
-            [checked]="user?.roles?.includes('Warehouseman')" />
-          <span class="text-sm">Warehouseman</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <input type="checkbox" formControlName="manager" class="w-5 h-5"
-            [checked]="user?.roles?.includes('Manager')" />
-          <span class="text-sm">Manager</span>
-        </div>
+
+        <form [formGroup]="form" (ngSubmit)="updateItem()">
+
+          <!-- Account Info -->
+          <div class="mb-1">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Account</p>
+          </div>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="User email" />
+            <mat-icon matPrefix class="mr-2 text-slate-400">email</mat-icon>
+          </mat-form-field>
+
+          <!-- Roles -->
+          <div class="mt-4 mb-4">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Roles & Permissions</p>
+            <div class="flex flex-wrap gap-4 bg-slate-50 rounded-xl p-4 border border-slate-200">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <div class="relative">
+                  <input type="checkbox" formControlName="admin" [checked]="user?.roles?.includes('Admin')"
+                    class="sr-only peer" />
+                  <div class="w-5 h-5 bg-white border-2 border-slate-300 rounded peer-checked:bg-amber-400 peer-checked:border-amber-400 transition-all flex items-center justify-center">
+                    <mat-icon class="hidden peer-checked:block text-white" style="font-size:12px; width:12px; height:12px;">check</mat-icon>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-700">Admin</div>
+                  <div class="text-xs text-slate-400">Full system access</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <div class="relative">
+                  <input type="checkbox" formControlName="warehouseman" [checked]="user?.roles?.includes('Warehouseman')"
+                    class="sr-only peer" />
+                  <div class="w-5 h-5 bg-white border-2 border-slate-300 rounded peer-checked:bg-amber-400 peer-checked:border-amber-400 transition-all flex items-center justify-center">
+                    <mat-icon class="hidden peer-checked:block text-white" style="font-size:12px; width:12px; height:12px;">check</mat-icon>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-700">Warehouseman</div>
+                  <div class="text-xs text-slate-400">Item management</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <div class="relative">
+                  <input type="checkbox" formControlName="manager" [checked]="user?.roles?.includes('Manager')"
+                    class="sr-only peer" />
+                  <div class="w-5 h-5 bg-white border-2 border-slate-300 rounded peer-checked:bg-amber-400 peer-checked:border-amber-400 transition-all flex items-center justify-center">
+                    <mat-icon class="hidden peer-checked:block text-white" style="font-size:12px; width:12px; height:12px;">check</mat-icon>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-700">Manager</div>
+                  <div class="text-xs text-slate-400">Inventory oversight</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Personal Info -->
+          <div class="mb-1">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Personal Information</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" placeholder="First name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" placeholder="Last name" />
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" placeholder="Address" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Salary ($)</mat-label>
+            <input matInput type="number" formControlName="salary" placeholder="Salary" />
+            <mat-icon matPrefix class="mr-2 text-slate-400">attach_money</mat-icon>
+          </mat-form-field>
+
+          <button type="submit" [disabled]="!form.valid" class="btn-form-submit mt-2">
+            <mat-icon style="font-size:18px; width:18px; height:18px;">save</mat-icon>
+            Save Changes
+          </button>
+
+        </form>
       </div>
     </div>
 
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>First name</mat-label>
-      <input matInput formControlName="firstName" placeholder="First name" />
-      <mat-icon matPrefix>category</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Last name</mat-label>
-      <input matInput formControlName="lastName" placeholder="Last name" />
-      <mat-icon matPrefix>attach_money</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Address</mat-label>
-      <input matInput formControlName="address" placeholder="Address" />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Salary</mat-label>
-      <input matInput type="number" formControlName="salary" placeholder="Salary" />
-    </mat-form-field>
-
-    <button type="submit" [disabled]="!form.valid"
-      class="w-full border border-slate-200 rounded-md disabled:bg-purple-400 py-2 px-3 bg-purple-700 text-white font-bold">
-      Update User
-    </button>
-  </form>
+  </div>
 </div>
