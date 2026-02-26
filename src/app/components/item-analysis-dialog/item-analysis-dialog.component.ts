@@ -92,7 +92,7 @@ import { AnalysisResponse } from '../../interfaces/analysis-reponse';
 
         <!-- Location history table -->
         <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; margin-bottom:10px;">Location History</div>
-        <div style="border:1px solid #e2e8f0; border-radius:10px; overflow:hidden;">
+        <div style="border:1px solid #e2e8f0; border-radius:10px; overflow:auto;">
           <table mat-table [dataSource]="filteredLocations" style="width:100%;">
 
             <ng-container matColumnDef="locationName">

@@ -261,3 +261,7 @@ mat-toolbar + *,
   color: #0f172a !important; /* darker text */
   font-weight: 600 !important;
 }
+
+mat-form-field {
+  margin-bottom: 1rem; /* 16px, adjust as needed */
+}
