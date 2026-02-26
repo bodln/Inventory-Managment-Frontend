@@ -1,59 +1,65 @@
-<div class="toolbar-container">
-  <mat-toolbar color="primary" class="custom-toolbar">
-    <button mat-icon-button [matMenuTriggerFor]="mainMenu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #mainMenu="matMenu">
-      <button *ngIf="isAdmin() || isManager()" mat-menu-item [routerLink]="['/items']">
-        <mat-icon>inventory</mat-icon>
-        <span>Items</span>
+<div class="navbar-shell">
+  <mat-toolbar class="custom-toolbar">
+
+    <!-- Left: Menu + Brand -->
+    <div class="flex items-center gap-3">
+      <button mat-icon-button [matMenuTriggerFor]="mainMenu" class="menu-trigger">
+        <mat-icon>menu</mat-icon>
       </button>
 
-      <button *ngIf="isAdmin() || isWarehouseman()" mat-menu-item [routerLink]="['/inventories']">
-        <mat-icon>storage</mat-icon>
-        <span>Inventories</span>
-      </button>
+      <mat-menu #mainMenu="matMenu" class="nav-menu">
+        <button *ngIf="isAdmin() || isManager()" mat-menu-item [routerLink]="['/items']">
+          <mat-icon>inventory</mat-icon>
+          <span>Items</span>
+        </button>
+        <button *ngIf="isAdmin() || isWarehouseman()" mat-menu-item [routerLink]="['/inventories']">
+          <mat-icon>storage</mat-icon>
+          <span>Inventories</span>
+        </button>
+        <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/shipmentorders']">
+          <mat-icon>local_shipping</mat-icon>
+          <span>Shipment Orders</span>
+        </button>
+        <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/analyze']">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Analytics</span>
+        </button>
+        <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/stock']">
+          <mat-icon>list_alt</mat-icon>
+          <span>Take Stock</span>
+        </button>
+        <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/users']">
+          <mat-icon>group</mat-icon>
+          <span>Users</span>
+        </button>
+        <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/bills']">
+          <mat-icon>receipt_long</mat-icon>
+          <span>Bills</span>
+        </button>
+      </mat-menu>
 
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/shipmentorders']">
-        <mat-icon>local_shipping</mat-icon>
-        <span>Shipment Orders</span>
-      </button>
+      <a routerLink="/" class="brand-link">
+        <div class="brand-icon">
+          <mat-icon>inventory_2</mat-icon>
+        </div>
+        <span class="brand-name">StockOps</span>
+      </a>
+    </div>
 
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/analyze']">
-        <mat-icon>bar_chart</mat-icon>
-        <span>Analytics</span>
-      </button>
+    <div class="flex-1"></div>
 
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/stock']">
-        <mat-icon>list_alt</mat-icon>
-        <span>Take stock</span>
-      </button>
-
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/users']">
-        <mat-icon>group</mat-icon>
-        <span>Users</span>
-      </button>
-
-      <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/bills']">
-        <mat-icon>receipt_long</mat-icon>
-        <span>Bills</span>
-      </button>
-    </mat-menu>
-
-    <a routerLink="/">Inventory Manager</a>
-    <div class="w-full"></div>
-
-    @if(isLoggedIn()){
-    <div *ngIf="authService.getUserDetail() as userDetail">
-      <div class="user-profile">
-        <a [matMenuTriggerFor]="menu" class="user-details">
-          <div class="user-initial">
+    <!-- Right: User or Auth links -->
+    @if(isLoggedIn()) {
+      <div *ngIf="authService.getUserDetail() as userDetail">
+        <a [matMenuTriggerFor]="menu" class="user-chip">
+          <div class="user-avatar">
             {{ userDetail!.email[0].toUpperCase() }}
           </div>
           <div class="user-info">
-            <h1 class="user-email">{{ userDetail?.email }}</h1>
-            <p class="user-role">{{ userDetail?.roles }}</p>
+            <span class="user-email">{{ userDetail?.email }}</span>
+            <span class="user-role">{{ userDetail?.roles }}</span>
           </div>
+          <mat-icon class="chevron">expand_more</mat-icon>
         </a>
         <mat-menu #menu="matMenu">
           <button (click)="logout()" mat-menu-item>
@@ -62,12 +68,12 @@
           </button>
         </mat-menu>
       </div>
-    </div>
-    }@else{
-    <div class="auth-links">
-      <a mat-button routerLink="/login">Login</a>
-      <a mat-button routerLink="/register">Register User</a>
-    </div>
+    } @else {
+      <div class="flex items-center gap-2">
+        <a mat-button routerLink="/login"     class="nav-auth-btn">Login</a>
+        <a mat-button routerLink="/register"  class="nav-auth-btn register">Register</a>
+      </div>
     }
+
   </mat-toolbar>
 </div>

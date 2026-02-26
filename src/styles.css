@@ -6,27 +6,37 @@
 
 /* ── Base ──────────────────────────────────────────────── */
 *, *::before, *::after {
-  font-family: 'DM Sans', sans-serif;
   box-sizing: border-box;
 }
 
 body {
   background-color: #f0f2f5;
   color: #0f172a;
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* ── Angular Material Table Overrides ─────────────────── */
+/* ── Icons — element selector wins over class selectors ── */
+mat-icon {
+  font-family: 'Material Icons' !important;
+  font-feature-settings: 'liga' 1 !important;
+  -webkit-font-feature-settings: 'liga' 1 !important;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  direction: ltr;
+}
+
+/* ── Angular Material Table ───────────────────────────── */
 .mat-mdc-table {
   width: 100%;
   background: white !important;
   font-family: 'DM Sans', sans-serif !important;
 }
-
 .mat-mdc-header-row {
   background-color: #fafbfc !important;
   min-height: 44px !important;
 }
-
 .mat-mdc-header-cell {
   color: #64748b !important;
   font-family: 'DM Sans', sans-serif !important;
@@ -37,16 +47,13 @@ body {
   border-bottom: 1px solid #e2e8f0 !important;
   padding: 0 18px !important;
 }
-
 .mat-mdc-row {
   min-height: 56px !important;
   transition: background-color 0.1s ease;
 }
-
 .mat-mdc-row:hover .mat-mdc-cell {
   background-color: #fafbff !important;
 }
-
 .mat-mdc-cell {
   color: #1e293b !important;
   font-family: 'DM Sans', sans-serif !important;
@@ -54,12 +61,22 @@ body {
   border-bottom: 1px solid #f1f5f9 !important;
   padding: 0 18px !important;
 }
-
 .mat-elevation-z8 {
   box-shadow: none !important;
 }
 
-/* ── Material Icon Buttons ────────────────────────────── */
+/* ── Material Form Field — target inputs, NOT * ───────── */
+.mat-mdc-form-field input,
+.mat-mdc-form-field textarea,
+.mat-mdc-form-field .mdc-floating-label,
+.mat-mdc-form-field .mat-mdc-select-value {
+  font-family: 'DM Sans', sans-serif !important;
+}
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+/* ── Icon Buttons ─────────────────────────────────────── */
 .mat-mdc-icon-button {
   width: 32px !important;
   height: 32px !important;
@@ -70,9 +87,7 @@ body {
   justify-content: center !important;
   transition: background-color 0.12s ease !important;
 }
-
-.mat-mdc-icon-button .mat-icon,
-.mat-mdc-icon-button .material-icons {
+.mat-mdc-icon-button mat-icon {
   font-size: 17px !important;
   width: 17px !important;
   height: 17px !important;
@@ -80,37 +95,22 @@ body {
   color: #94a3b8;
   transition: color 0.12s ease;
 }
-
 .mat-mdc-icon-button:hover {
   background-color: #fef3c7 !important;
 }
-
-.mat-mdc-icon-button:hover .mat-icon,
-.mat-mdc-icon-button:hover .material-icons {
+.mat-mdc-icon-button:hover mat-icon {
   color: #d97706 !important;
 }
 
-/* ── Material Form Field ──────────────────────────────── */
-.mat-mdc-form-field,
-.mat-mdc-form-field * {
-  font-family: 'DM Sans', sans-serif !important;
-}
-
-.mat-mdc-form-field-subscript-wrapper {
-  display: none;
-}
-
 /* ── Row Status Colors ────────────────────────────────── */
-tr.arrived .mat-mdc-cell           { background-color: #fffbeb !important; }
-tr.unloaded .mat-mdc-cell          { background-color: #f0fdf4 !important; }
-tr.notarrived .mat-mdc-cell        { background-color: #fff1f2 !important; }
-tr.just-right .mat-mdc-cell        { background-color: #f0fdf4 !important; }
-tr.over-capacity .mat-mdc-cell     { background-color: #fffbeb !important; }
-tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
+tr.arrived .mat-mdc-cell        { background-color: #fffbeb !important; }
+tr.unloaded .mat-mdc-cell       { background-color: #f0fdf4 !important; }
+tr.notarrived .mat-mdc-cell     { background-color: #fff1f2 !important; }
+tr.just-right .mat-mdc-cell     { background-color: #f0fdf4 !important; }
+tr.over-capacity .mat-mdc-cell  { background-color: #fffbeb !important; }
+tr.under-capacity .mat-mdc-cell { background-color: #fff1f2 !important; }
 
-/* ── Global Utility Classes ───────────────────────────── */
-
-/* Badges */
+/* ── Badges ───────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -131,7 +131,7 @@ tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
 .badge-amber  { background: #fef3c7; color: #92400e; }
 .badge-rose   { background: #ffe4e6; color: #be123c; }
 
-/* Mono numbers */
+/* ── Mono ─────────────────────────────────────────────── */
 .mono {
   font-family: 'DM Mono', monospace;
   font-size: 0.83rem;
@@ -139,7 +139,7 @@ tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
   letter-spacing: -0.01em;
 }
 
-/* Primary button */
+/* ── Buttons ──────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -157,11 +157,10 @@ tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
   white-space: nowrap;
   letter-spacing: 0.01em;
 }
-.btn-primary:hover   { background: #d97706; }
-.btn-primary:active  { transform: scale(0.98); }
+.btn-primary:hover    { background: #d97706; }
+.btn-primary:active   { transform: scale(0.98); }
 .btn-primary:disabled { background: #fde68a; cursor: not-allowed; }
 
-/* Sort buttons */
 .sort-btn {
   display: inline-flex;
   align-items: center;
@@ -191,7 +190,6 @@ tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
   cursor: default;
 }
 
-/* Form submit button */
 .btn-form-submit {
   width: 100%;
   display: flex;
@@ -211,15 +209,55 @@ tr.under-capacity .mat-mdc-cell    { background-color: #fff1f2 !important; }
   margin-top: 8px;
   letter-spacing: 0.02em;
 }
-.btn-form-submit:hover   { background: #0f172a; }
-.btn-form-submit:active  { transform: scale(0.99); }
+.btn-form-submit:hover    { background: #0f172a; }
+.btn-form-submit:active   { transform: scale(0.99); }
 .btn-form-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
-/* Legend dot */
+/* ── Legend dot ───────────────────────────────────────── */
 .legend-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+
+/* ── Fix gap between navbar and page content ─────────── */
+.toolbar-container,
+app-navbar {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+mat-toolbar + *,
+.mat-toolbar + * {
+  margin-top: 0 !important;
+}
+
+/* ── Angular Material Menu Fix: auto width, prevent horizontal scroll ── */
+.cdk-overlay-pane {
+  max-width: 95vw !important;
+}
+
+.cdk-overlay-pane .mat-mdc-menu-panel {
+  width: auto !important;
+  max-width: 95vw !important;
+  overflow-x: hidden !important;
+}
+
+.cdk-overlay-pane .mat-mdc-menu-content {
+  overflow-x: hidden !important;
+}
+
+.cdk-overlay-pane .mat-mdc-menu-item {
+  white-space: normal !important;
+  word-break: break-word !important;
+  color: #0f172a !important; /* darker text */
+  font-weight: 600 !important;
 }
