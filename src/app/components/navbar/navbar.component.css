@@ -180,3 +180,11 @@
 ::ng-deep .nav-menu .mat-mdc-menu-item:hover mat-icon {
   color: #f59e0b !important;
 }
+
+/* ── Mobile: hide user-info text, show avatar only ───── */
+@media (max-width: 480px) {
+  .user-info { display: none; }
+  .chevron   { display: none !important; }
+  .user-chip { padding: 4px 6px; gap: 0; max-width: unset; }
+  .brand-name { display: none; }
+}
