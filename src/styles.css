@@ -213,9 +213,3 @@ html {
   scrollbar-width: none;
 }
 .sort-scroll::-webkit-scrollbar { display: none; }
-
-::ng-deep .mat-mdc-form-field-subscript-wrapper { display: none; }
-
-.mdc-notched-outline__notch {
-  border-right: none !important;
-}
