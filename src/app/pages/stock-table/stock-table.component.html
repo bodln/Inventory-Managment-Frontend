@@ -1,58 +1,58 @@
 <div class="min-h-screen bg-slate-50">
 
   <!-- Page Header -->
-  <div class="bg-slate-950 px-4 sm:px-8 py-4 sm:py-5 shadow-lg">
-    <div class="max-w-7xl mx-auto flex items-center gap-3">
+  <div class="bg-slate-950 px-8 py-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center gap-4">
       <div class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
         <mat-icon style="font-size:20px; width:20px; height:20px; color:#1c1917;">data_usage</mat-icon>
       </div>
       <div>
-        <h1 class="text-base sm:text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Inventory Stock</h1>
-        <p class="text-slate-500 text-xs hidden sm:block">Monitor stock levels and capacity thresholds</p>
+        <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Inventory Stock</h1>
+        <p class="text-slate-500 text-xs">Monitor stock levels and capacity thresholds</p>
       </div>
     </div>
   </div>
 
   <!-- Content -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
+  <div class="max-w-7xl mx-auto px-8 py-6">
 
     <!-- Controls -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5 mb-4">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mb-5">
       <mat-form-field appearance="outline" class="w-full" style="margin-bottom:-1.34em">
         <mat-label>Search by item name...</mat-label>
         <input matInput [(ngModel)]="searchText" (ngModelChange)="applyFilter()" placeholder="Search by item name" />
         <mat-icon matPrefix class="mr-2 text-slate-400">search</mat-icon>
       </mat-form-field>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 mt-4">
-        <div class="flex items-center gap-2 sort-scroll pb-1">
-          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex-shrink-0">Filter:</span>
-          <button (click)="setSortByCapacity('none')"  [disabled]="sortByCapacity === 'none'"  class="sort-btn">All</button>
-          <button (click)="setSortByCapacity('over')"  [disabled]="sortByCapacity === 'over'"  class="sort-btn">Over</button>
-          <button (click)="setSortByCapacity('under')" [disabled]="sortByCapacity === 'under'" class="sort-btn">Under</button>
+      <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Filter:</span>
+          <button (click)="setSortByCapacity('none')"  [disabled]="sortByCapacity === 'none'"  class="sort-btn">All Items</button>
+          <button (click)="setSortByCapacity('over')"  [disabled]="sortByCapacity === 'over'"  class="sort-btn">Over Capacity</button>
+          <button (click)="setSortByCapacity('under')" [disabled]="sortByCapacity === 'under'" class="sort-btn">Under Capacity</button>
         </div>
 
         <!-- Legend -->
-        <div class="flex items-center gap-3 text-xs text-slate-500 font-medium flex-shrink-0">
+        <div class="flex items-center gap-4 text-xs text-slate-500 font-medium">
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#22c55e;"></span>
-            <span class="hidden sm:inline">In Bounds</span>
+            In Bounds
           </div>
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#f59e0b;"></span>
-            <span class="hidden sm:inline">Over</span>
+            Over Capacity
           </div>
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#f43f5e;"></span>
-            <span class="hidden sm:inline">Under</span>
+            Under Capacity
           </div>
         </div>
       </div>
     </div>
 
     <!-- Table -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
-      <table mat-table [dataSource]="filteredStocks$" class="w-full" style="min-width:640px;">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <table mat-table [dataSource]="filteredStocks$" class="w-full">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Item Name</th>
@@ -83,7 +83,7 @@
         </ng-container>
 
         <ng-container matColumnDef="overCapacity">
-          <th mat-header-cell *matHeaderCellDef>Over Cap.</th>
+          <th mat-header-cell *matHeaderCellDef>Over Capacity</th>
           <td mat-cell *matCellDef="let stock">
             <span [class]="stock.overCapacity ? 'badge badge-yellow' : 'badge badge-gray'">
               {{ stock.overCapacity ? 'Yes' : 'No' }}
@@ -92,7 +92,7 @@
         </ng-container>
 
         <ng-container matColumnDef="underCapacity">
-          <th mat-header-cell *matHeaderCellDef>Under Cap.</th>
+          <th mat-header-cell *matHeaderCellDef>Under Capacity</th>
           <td mat-cell *matCellDef="let stock">
             <span [class]="stock.underCapacity ? 'badge badge-red' : 'badge badge-gray'">
               {{ stock.underCapacity ? 'Yes' : 'No' }}
@@ -101,7 +101,7 @@
         </ng-container>
 
         <ng-container matColumnDef="moreInStorage">
-          <th mat-header-cell *matHeaderCellDef>In Storage</th>
+          <th mat-header-cell *matHeaderCellDef>More in Storage</th>
           <td mat-cell *matCellDef="let stock">
             <span [class]="stock.moreInStorage ? 'badge badge-blue' : 'badge badge-gray'">
               {{ stock.moreInStorage ? 'Yes' : 'No' }}

@@ -1,31 +1,16 @@
-<div class="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-
-  <!-- Background grid -->
-  <div class="absolute inset-0 opacity-5"
-    style="background-image: linear-gradient(#94a3b8 1px, transparent 1px), linear-gradient(90deg, #94a3b8 1px, transparent 1px); background-size: 48px 48px;">
-  </div>
-
-  <div class="relative text-center max-w-sm w-full">
-
-    <!-- Icon -->
-    <div class="mx-auto w-16 h-16 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-center justify-center mb-6">
-      <mat-icon style="font-size:32px; width:32px; height:32px; color:#f43f5e;">lock</mat-icon>
+<div class="flex items-center flex-col pt-56 h-screen">
+    <div class="h-screen">
+      <h1 class="text-4xl text-center font-bold my-10">Please
+        <span class="text-5xl text-green-800">LEAVE</span>
+      </h1>
+  
+      <div class="flex flex-col items-center gap-5 justify-center">
+        <h1 class="text-2xl">Unauthorized!</h1>
+        <a routerLink="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+            Login
+        </a>
+      </div>
+  
     </div>
-
-    <!-- Text -->
-    <h1 class="text-3xl font-extrabold text-white mb-2" style="font-family:'Syne',sans-serif;">
-      Access Denied
-    </h1>
-    <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-      You don't have permission to view this page.<br>
-      Please sign in with an authorized account.
-    </p>
-
-    <!-- CTA -->
-    <a routerLink="/login" class="btn-primary inline-flex no-underline justify-center w-full sm:w-auto px-8">
-      <mat-icon style="font-size:17px; width:17px; height:17px;">login</mat-icon>
-      Sign In
-    </a>
-
   </div>
-</div>
+  
