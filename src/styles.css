@@ -222,11 +222,6 @@ tr.under-capacity .mat-mdc-cell { background-color: #fff1f2 !important; }
   flex-shrink: 0;
 }
 
-.mdc-notched-outline__notch {
-  border-right: none !important;
-}
-
-
 /* ── Fix gap between navbar and page content ─────────── */
 .toolbar-container,
 app-navbar {
@@ -240,30 +235,21 @@ mat-toolbar + *,
   margin-top: 0 !important;
 }
 
-/* ── Angular Material Menu Fix: auto width, prevent horizontal scroll ── */
-.cdk-overlay-pane {
-  max-width: 95vw !important;
+/* ── Material Dialog Panel ────────────────────────────── */
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 16px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25) !important;
 }
 
-.cdk-overlay-pane .mat-mdc-menu-panel {
-  width: auto !important;
-  max-width: 95vw !important;
-  overflow-x: hidden !important;
+.mat-mdc-dialog-container {
+  padding: 0 !important;
 }
 
-.cdk-overlay-pane .mat-mdc-menu-content {
-  overflow-x: hidden !important;
-}
-
-.cdk-overlay-pane .mat-mdc-menu-item {
-  white-space: normal !important;
-  word-break: break-word !important;
-  color: #0f172a !important; /* darker text */
-  font-weight: 600 !important;
-}
-
-mat-form-field {
-  margin-bottom: 1rem; /* 16px, adjust as needed */
+/* ── Notch fix (vertical line in input fields) ────────── */
+.mdc-notched-outline__notch {
+  border-right: none !important;
 }
 
 /* ── Breadcrumb — no horizontal overflow on mobile ───── */
