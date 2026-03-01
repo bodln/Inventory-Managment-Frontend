@@ -265,3 +265,15 @@ mat-toolbar + *,
 mat-form-field {
   margin-bottom: 1rem; /* 16px, adjust as needed */
 }
+
+/* ── Breadcrumb — no horizontal overflow on mobile ───── */
+.breadcrumb-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.breadcrumb-row span {
+  white-space: nowrap;
+}
