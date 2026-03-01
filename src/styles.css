@@ -1,267 +1,215 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── Base ──────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
-body {
-  background-color: #f0f2f5;
-  color: #0f172a;
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* ── Icons — element selector wins over class selectors ── */
-mat-icon {
-  font-family: 'Material Icons' !important;
-  font-feature-settings: 'liga' 1 !important;
-  -webkit-font-feature-settings: 'liga' 1 !important;
-  -webkit-font-smoothing: antialiased;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  direction: ltr;
-}
-
-/* ── Angular Material Table ───────────────────────────── */
+/* ─── Material Table ────────────────────────────────────────────────────── */
 .mat-mdc-table {
+  background: transparent !important;
   width: 100%;
-  background: white !important;
-  font-family: 'DM Sans', sans-serif !important;
 }
+
 .mat-mdc-header-row {
-  background-color: #fafbfc !important;
-  min-height: 44px !important;
+  background: #f8fafc !important;
+  border-bottom: 2px solid #e2e8f0 !important;
 }
+
 .mat-mdc-header-cell {
   color: #64748b !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 0.68rem !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.09em !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 0 18px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 12px 16px !important;
+  border-bottom: none !important;
+  white-space: nowrap;
 }
+
 .mat-mdc-row {
-  min-height: 56px !important;
-  transition: background-color 0.1s ease;
-}
-.mat-mdc-row:hover .mat-mdc-cell {
-  background-color: #fafbff !important;
-}
-.mat-mdc-cell {
-  color: #1e293b !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 0.875rem !important;
   border-bottom: 1px solid #f1f5f9 !important;
-  padding: 0 18px !important;
-}
-.mat-elevation-z8 {
-  box-shadow: none !important;
+  transition: background 0.12s ease;
 }
 
-/* ── Material Form Field — target inputs, NOT * ───────── */
-.mat-mdc-form-field input,
-.mat-mdc-form-field textarea,
-.mat-mdc-form-field .mdc-floating-label,
-.mat-mdc-form-field .mat-mdc-select-value {
-  font-family: 'DM Sans', sans-serif !important;
-}
-.mat-mdc-form-field-subscript-wrapper {
-  display: none;
+.mat-mdc-row:last-child {
+  border-bottom: none !important;
 }
 
-/* ── Icon Buttons ─────────────────────────────────────── */
-.mat-mdc-icon-button {
-  width: 32px !important;
-  height: 32px !important;
-  padding: 0 !important;
-  border-radius: 8px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: background-color 0.12s ease !important;
-}
-.mat-mdc-icon-button mat-icon {
-  font-size: 17px !important;
-  width: 17px !important;
-  height: 17px !important;
-  line-height: 17px !important;
-  color: #94a3b8;
-  transition: color 0.12s ease;
-}
-.mat-mdc-icon-button:hover {
-  background-color: #fef3c7 !important;
-}
-.mat-mdc-icon-button:hover mat-icon {
-  color: #d97706 !important;
+.mat-mdc-row:hover {
+  background: #fafbff !important;
 }
 
-/* ── Row Status Colors ────────────────────────────────── */
-tr.arrived .mat-mdc-cell        { background-color: #fffbeb !important; }
-tr.unloaded .mat-mdc-cell       { background-color: #f0fdf4 !important; }
-tr.notarrived .mat-mdc-cell     { background-color: #fff1f2 !important; }
-tr.just-right .mat-mdc-cell     { background-color: #f0fdf4 !important; }
-tr.over-capacity .mat-mdc-cell  { background-color: #fffbeb !important; }
-tr.under-capacity .mat-mdc-cell { background-color: #fff1f2 !important; }
+.mat-mdc-cell {
+  color: #334155 !important;
+  font-size: 13px !important;
+  padding: 13px 16px !important;
+  border-bottom: none !important;
+}
 
-/* ── Badges ───────────────────────────────────────────── */
+/* Row status coloring */
+.row-over-capacity {
+  background: #fffbeb !important;
+}
+.row-over-capacity:hover {
+  background: #fef3c7 !important;
+}
+.row-under-capacity {
+  background: #fff1f2 !important;
+}
+.row-under-capacity:hover {
+  background: #ffe4e6 !important;
+}
+.row-arrived {
+  background: #fffbeb !important;
+}
+.row-unloaded {
+  background: #f0fdf4 !important;
+}
+
+/* ─── Badges ────────────────────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
   padding: 2px 9px;
-  border-radius: 4px;
-  font-size: 0.68rem;
+  border-radius: 99px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
-.badge-green  { background: #dcfce7; color: #15803d; }
-.badge-red    { background: #fee2e2; color: #dc2626; }
-.badge-yellow { background: #fef3c7; color: #b45309; }
-.badge-blue   { background: #dbeafe; color: #1d4ed8; }
-.badge-purple { background: #ede9fe; color: #7c3aed; }
-.badge-gray   { background: #f1f5f9; color: #475569; }
 .badge-amber  { background: #fef3c7; color: #92400e; }
+.badge-green  { background: #dcfce7; color: #166534; }
+.badge-yellow { background: #fef9c3; color: #713f12; }
+.badge-red    { background: #fee2e2; color: #991b1b; }
 .badge-rose   { background: #ffe4e6; color: #be123c; }
+.badge-blue   { background: #dbeafe; color: #1e40af; }
+.badge-gray   { background: #f1f5f9; color: #64748b; }
 
-/* ── Mono ─────────────────────────────────────────────── */
+/* ─── Mono ──────────────────────────────────────────────────────────────── */
 .mono {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.83rem;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: 'DM Mono', 'Fira Mono', monospace;
+  font-size: 13px;
 }
 
-/* ── Buttons ──────────────────────────────────────────── */
+/* ─── Sort buttons ──────────────────────────────────────────────────────── */
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.sort-btn:hover {
+  border-color: #f59e0b;
+  color: #92400e;
+  background: #fffbeb;
+}
+.sort-btn:disabled {
+  background: #fef3c7;
+  border-color: #fcd34d;
+  color: #92400e;
+  cursor: default;
+}
+
+/* ─── Primary button ────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 18px;
+  padding: 8px 18px;
   background: #f59e0b;
   color: #1c1917;
-  border: none;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.875rem;
+  font-size: 13px;
   font-weight: 700;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  transition: background 0.12s ease, transform 0.1s ease;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-}
-.btn-primary:hover    { background: #d97706; }
-.btn-primary:active   { transform: scale(0.98); }
-.btn-primary:disabled { background: #fde68a; cursor: not-allowed; }
-
-.sort-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  background: white;
-  color: #475569;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.12s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
-.sort-btn:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-  color: #1e293b;
-}
-.sort-btn:disabled,
-.sort-btn.active {
-  background: #1e293b;
-  border-color: #1e293b;
-  color: #f8fafc;
-  cursor: default;
-}
+.btn-primary:hover  { background: #d97706; }
+.btn-primary:active { background: #b45309; }
 
+/* ─── Form submit button ────────────────────────────────────────────────── */
 .btn-form-submit {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 24px;
+  padding: 12px 20px;
   background: #1e293b;
   color: white;
-  border: none;
-  border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
+  font-size: 14px;
   font-weight: 700;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: background 0.12s ease, transform 0.1s ease;
-  margin-top: 8px;
-  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
+  letter-spacing: 0.01em;
 }
-.btn-form-submit:hover    { background: #0f172a; }
-.btn-form-submit:active   { transform: scale(0.99); }
-.btn-form-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+.btn-form-submit:hover   { background: #0f172a; }
+.btn-form-submit:disabled {
+  background: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
 
-/* ── Legend dot ───────────────────────────────────────── */
+/* ─── Legend dot ────────────────────────────────────────────────────────── */
 .legend-dot {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
 }
 
-.mdc-notched-outline__notch {
-  border-right: none !important;
+/* ─── Material Form Fields ──────────────────────────────────────────────── */
+::ng-deep .mat-mdc-form-field-subscript-wrapper { display: none; }
+
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
 }
 
-
-/* ── Fix gap between navbar and page content ─────────── */
-.toolbar-container,
-app-navbar {
-  display: block;
-  margin: 0 !important;
-  padding: 0 !important;
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #f59e0b !important;
 }
 
-mat-toolbar + *,
-.mat-toolbar + * {
-  margin-top: 0 !important;
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #d97706 !important;
 }
 
-/* ── Angular Material Menu Fix: auto width, prevent horizontal scroll ── */
-.cdk-overlay-pane {
-  max-width: 95vw !important;
+/* ─── Icon button overrides ─────────────────────────────────────────────── */
+.mat-mdc-icon-button {
+  color: #94a3b8 !important;
+  transition: color 0.15s ease !important;
+}
+.mat-mdc-icon-button:hover {
+  color: #475569 !important;
+  background: #f1f5f9 !important;
 }
 
-.cdk-overlay-pane .mat-mdc-menu-panel {
-  width: auto !important;
-  max-width: 95vw !important;
-  overflow-x: hidden !important;
+/* ─── Scrollable sort row on small screens ──────────────────────────────── */
+.sort-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-
-.cdk-overlay-pane .mat-mdc-menu-content {
-  overflow-x: hidden !important;
-}
-
-.cdk-overlay-pane .mat-mdc-menu-item {
-  white-space: normal !important;
-  word-break: break-word !important;
-  color: #0f172a !important; /* darker text */
-  font-weight: 600 !important;
-}
-
-mat-form-field {
-  margin-bottom: 1rem; /* 16px, adjust as needed */
-}
+.sort-scroll::-webkit-scrollbar { display: none; }

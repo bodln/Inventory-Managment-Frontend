@@ -1,58 +1,58 @@
 <div class="min-h-screen bg-slate-50">
 
   <!-- Page Header -->
-  <div class="bg-slate-950 px-8 py-5 shadow-lg">
-    <div class="max-w-7xl mx-auto flex items-center gap-4">
+  <div class="bg-slate-950 px-4 sm:px-8 py-4 sm:py-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center gap-3">
       <div class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
         <mat-icon style="font-size:20px; width:20px; height:20px; color:#1c1917;">local_shipping</mat-icon>
       </div>
       <div>
-        <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Shipment Orders</h1>
-        <p class="text-slate-500 text-xs">Track incoming shipments and manage delivery statuses</p>
+        <h1 class="text-base sm:text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Shipment Orders</h1>
+        <p class="text-slate-500 text-xs hidden sm:block">Track incoming shipments and manage delivery statuses</p>
       </div>
     </div>
   </div>
 
   <!-- Content -->
-  <div class="max-w-7xl mx-auto px-8 py-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
 
     <!-- Controls -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mb-5">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5 mb-4">
       <mat-form-field appearance="outline" class="w-full" style="margin-bottom:-1.34em">
         <mat-label>Search orders by item name...</mat-label>
         <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchQueryChange()" placeholder="Enter item name to search" />
         <mat-icon matPrefix class="mr-2 text-slate-400">search</mat-icon>
       </mat-form-field>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Sort:</span>
-          <button (click)="onSortBy('itemName')"     class="sort-btn">Item Name</button>
-          <button (click)="onSortBy('unloaded')"     class="sort-btn">Unloaded</button>
-          <button (click)="onSortBy('dateOfArrival')" class="sort-btn">Arrival Date</button>
+      <div class="flex flex-wrap items-center justify-between gap-3 mt-4">
+        <div class="flex items-center gap-2 sort-scroll pb-1 flex-1 min-w-0">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex-shrink-0">Sort:</span>
+          <button (click)="onSortBy('itemName')"      class="sort-btn">Item Name</button>
+          <button (click)="onSortBy('unloaded')"      class="sort-btn">Unloaded</button>
+          <button (click)="onSortBy('dateOfArrival')" class="sort-btn">Arrival</button>
         </div>
 
         <!-- Legend -->
-        <div class="flex items-center gap-4 text-xs text-slate-500 font-medium">
+        <div class="flex items-center gap-3 text-xs text-slate-500 font-medium flex-shrink-0">
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#22c55e;"></span>
-            Unloaded
+            <span class="hidden sm:inline">Unloaded</span>
           </div>
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#f59e0b;"></span>
-            Arrived
+            <span class="hidden sm:inline">Arrived</span>
           </div>
           <div class="flex items-center gap-1.5">
             <span class="legend-dot" style="background:#f43f5e;"></span>
-            Not Arrived
+            <span class="hidden sm:inline">In Transit</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Table -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      <table mat-table [dataSource]="filteredOrders$" class="w-full">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+      <table mat-table [dataSource]="filteredOrders$" class="w-full" style="min-width:700px;">
 
         <ng-container matColumnDef="itemName">
           <th mat-header-cell *matHeaderCellDef>Item Name</th>
@@ -83,7 +83,7 @@
         </ng-container>
 
         <ng-container matColumnDef="dateOfArrival">
-          <th mat-header-cell *matHeaderCellDef>Arrival Date</th>
+          <th mat-header-cell *matHeaderCellDef>Arrival</th>
           <td mat-cell *matCellDef="let order">
             <span class="mono text-sm" [class]="order.dateOfArrival ? 'text-slate-700' : 'text-slate-400'">
               {{ order.dateOfArrival ? (order.dateOfArrival | date) : 'Pending' }}
@@ -101,9 +101,9 @@
         <ng-container matColumnDef="unloaded">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let order">
-            <span *ngIf="order.unloaded"             class="badge badge-green">Unloaded</span>
-            <span *ngIf="!order.unloaded && order.dateOfArrival != null" class="badge badge-yellow">Arrived</span>
-            <span *ngIf="!order.unloaded && order.dateOfArrival == null" class="badge badge-rose">In Transit</span>
+            <span *ngIf="order.unloaded"                                            class="badge badge-green">Unloaded</span>
+            <span *ngIf="!order.unloaded && order.dateOfArrival != null"            class="badge badge-yellow">Arrived</span>
+            <span *ngIf="!order.unloaded && order.dateOfArrival == null"            class="badge badge-rose">In Transit</span>
           </td>
         </ng-container>
 
