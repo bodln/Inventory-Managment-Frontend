@@ -1,23 +1,23 @@
 <div class="min-h-screen bg-slate-50">
 
   <!-- Page Header -->
-  <div class="bg-slate-950 px-8 py-5 shadow-lg">
-    <div class="max-w-7xl mx-auto flex items-center gap-4">
+  <div class="bg-slate-950 px-4 sm:px-8 py-4 sm:py-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center gap-3 sm:gap-4">
       <div class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
         <mat-icon style="font-size:20px; width:20px; height:20px; color:#1c1917;">analytics</mat-icon>
       </div>
       <div>
-        <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Analytics</h1>
-        <p class="text-slate-500 text-xs">Sales performance, profit margins and location history per item</p>
+        <h1 class="text-base sm:text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Analytics</h1>
+        <p class="text-slate-500 text-xs hidden sm:block">Sales performance, profit margins and location history per item</p>
       </div>
     </div>
   </div>
 
   <!-- Content -->
-  <div class="max-w-7xl mx-auto px-8 py-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
 
     <!-- Controls -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mb-5">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5 mb-4 sm:mb-5">
       <mat-form-field appearance="outline" class="w-full" style="margin-bottom:-1.34em">
         <mat-label>Search items...</mat-label>
         <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchQueryChange()" placeholder="Enter item name to search" />
@@ -33,55 +33,57 @@
 
     <!-- Table -->
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      <table mat-table [dataSource]="filteredItems$" class="w-full">
+      <div class="overflow-x-auto">
+        <table mat-table [dataSource]="filteredItems$" class="w-full">
 
-        <ng-container matColumnDef="naziv">
-          <th mat-header-cell *matHeaderCellDef>Item Name</th>
-          <td mat-cell *matCellDef="let analysis">
-            <span class="font-semibold text-slate-900">{{ analysis.item.naziv }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="naziv">
+            <th mat-header-cell *matHeaderCellDef>Item Name</th>
+            <td mat-cell *matCellDef="let analysis">
+              <span class="font-semibold text-slate-900 whitespace-nowrap">{{ analysis.item.naziv }}</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="location">
-          <th mat-header-cell *matHeaderCellDef>Last Location</th>
-          <td mat-cell *matCellDef="let analysis">
-            <div class="flex items-center gap-1.5">
-              <mat-icon class="text-slate-400" style="font-size:13px; width:13px; height:13px;">place</mat-icon>
-              <span class="text-slate-600 text-sm">
-                {{ analysis.locations?.slice(-1)[0]?.locationName || 'N/A' }}
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef>Last Location</th>
+            <td mat-cell *matCellDef="let analysis">
+              <div class="flex items-center gap-1.5">
+                <mat-icon class="text-slate-400" style="font-size:13px; width:13px; height:13px;">place</mat-icon>
+                <span class="text-slate-600 text-sm whitespace-nowrap">
+                  {{ analysis.locations?.slice(-1)[0]?.locationName || 'N/A' }}
+                </span>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitsSold">
+            <th mat-header-cell *matHeaderCellDef>Units Sold</th>
+            <td mat-cell *matCellDef="let analysis">
+              <span class="mono font-medium text-slate-900">{{ analysis.unitsSold }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="profit">
+            <th mat-header-cell *matHeaderCellDef>Total Profit</th>
+            <td mat-cell *matCellDef="let analysis">
+              <span class="mono font-semibold whitespace-nowrap" [class]="analysis.totalProfit >= 0 ? 'text-emerald-700' : 'text-rose-600'">
+                ${{ analysis.totalProfit | number:'1.2-2' }}
               </span>
-            </div>
-          </td>
-        </ng-container>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="unitsSold">
-          <th mat-header-cell *matHeaderCellDef>Units Sold</th>
-          <td mat-cell *matCellDef="let analysis">
-            <span class="mono font-medium text-slate-900">{{ analysis.unitsSold }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let analysis">
+              <button mat-icon-button (click)="analyze(analysis.item)" matTooltip="View Analysis">
+                <mat-icon>analytics</mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="profit">
-          <th mat-header-cell *matHeaderCellDef>Total Profit</th>
-          <td mat-cell *matCellDef="let analysis">
-            <span class="mono font-semibold" [class]="analysis.totalProfit >= 0 ? 'text-emerald-700' : 'text-rose-600'">
-              ${{ analysis.totalProfit | number:'1.2-2' }}
-            </span>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let analysis">
-            <button mat-icon-button (click)="analyze(analysis.item)" matTooltip="View Analysis">
-              <mat-icon>analytics</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
     </div>
 
   </div>

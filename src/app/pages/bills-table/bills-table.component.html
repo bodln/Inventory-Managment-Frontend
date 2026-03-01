@@ -1,23 +1,23 @@
 <div class="min-h-screen bg-slate-50">
 
   <!-- Page Header -->
-  <div class="bg-slate-950 px-8 py-5 shadow-lg">
-    <div class="max-w-7xl mx-auto flex items-center gap-4">
+  <div class="bg-slate-950 px-4 sm:px-8 py-4 sm:py-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center gap-3 sm:gap-4">
       <div class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
         <mat-icon style="font-size:20px; width:20px; height:20px; color:#1c1917;">receipt_long</mat-icon>
       </div>
       <div>
-        <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Bills of Sale</h1>
-        <p class="text-slate-500 text-xs">Complete sales transaction history and records</p>
+        <h1 class="text-base sm:text-lg font-bold text-white leading-tight" style="font-family:'Syne',sans-serif;">Bills of Sale</h1>
+        <p class="text-slate-500 text-xs hidden sm:block">Complete sales transaction history and records</p>
       </div>
     </div>
   </div>
 
   <!-- Content -->
-  <div class="max-w-7xl mx-auto px-8 py-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
 
     <!-- Controls -->
-    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mb-5">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5 mb-4 sm:mb-5">
       <mat-form-field appearance="outline" class="w-full" style="margin-bottom:-1.34em">
         <mat-label>Search by item name...</mat-label>
         <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchQueryChange()" placeholder="Enter item name to search" />
@@ -34,55 +34,57 @@
 
     <!-- Table -->
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      <table mat-table [dataSource]="filteredBills$" class="w-full">
+      <div class="overflow-x-auto">
+        <table mat-table [dataSource]="filteredBills$" class="w-full">
 
-        <ng-container matColumnDef="itemName">
-          <th mat-header-cell *matHeaderCellDef>Item Name</th>
-          <td mat-cell *matCellDef="let bill">
-            <span class="font-semibold text-slate-900">{{ bill.item.naziv }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="itemName">
+            <th mat-header-cell *matHeaderCellDef>Item Name</th>
+            <td mat-cell *matCellDef="let bill">
+              <span class="font-semibold text-slate-900 whitespace-nowrap">{{ bill.item.naziv }}</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="buyerName">
-          <th mat-header-cell *matHeaderCellDef>Buyer</th>
-          <td mat-cell *matCellDef="let bill">
-            <span *ngIf="bill.nameOfBuyer" class="text-slate-700">{{ bill.nameOfBuyer }}</span>
-            <span *ngIf="!bill.nameOfBuyer" class="badge badge-gray">Anonymous</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="buyerName">
+            <th mat-header-cell *matHeaderCellDef>Buyer</th>
+            <td mat-cell *matCellDef="let bill">
+              <span *ngIf="bill.nameOfBuyer" class="text-slate-700 whitespace-nowrap">{{ bill.nameOfBuyer }}</span>
+              <span *ngIf="!bill.nameOfBuyer" class="badge badge-gray">Anonymous</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="contactInfo">
-          <th mat-header-cell *matHeaderCellDef>Contact</th>
-          <td mat-cell *matCellDef="let bill">
-            <span *ngIf="bill.contactInfo" class="text-slate-600 text-sm">{{ bill.contactInfo }}</span>
-            <span *ngIf="!bill.contactInfo" class="badge badge-gray">Not provided</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="contactInfo">
+            <th mat-header-cell *matHeaderCellDef>Contact</th>
+            <td mat-cell *matCellDef="let bill">
+              <span *ngIf="bill.contactInfo" class="text-slate-600 text-sm">{{ bill.contactInfo }}</span>
+              <span *ngIf="!bill.contactInfo" class="badge badge-gray">Not provided</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef>Qty</th>
-          <td mat-cell *matCellDef="let bill">
-            <span class="mono font-medium">{{ bill.quantity }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Qty</th>
+            <td mat-cell *matCellDef="let bill">
+              <span class="mono font-medium">{{ bill.quantity }}</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>Total</th>
-          <td mat-cell *matCellDef="let bill">
-            <span class="mono font-semibold text-slate-900">{{ (bill.item.price * bill.quantity) | currency }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let bill">
+              <span class="mono font-semibold text-slate-900 whitespace-nowrap">{{ (bill.item.price * bill.quantity) | currency }}</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="dateOfSale">
-          <th mat-header-cell *matHeaderCellDef>Date of Sale</th>
-          <td mat-cell *matCellDef="let bill">
-            <span class="mono text-slate-600 text-sm">{{ bill.dateOfSale | date }}</span>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="dateOfSale">
+            <th mat-header-cell *matHeaderCellDef>Date of Sale</th>
+            <td mat-cell *matCellDef="let bill">
+              <span class="mono text-slate-600 text-sm whitespace-nowrap">{{ bill.dateOfSale | date }}</span>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
     </div>
 
   </div>
