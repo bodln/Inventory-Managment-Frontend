@@ -29,7 +29,7 @@
             <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Credentials</p>
           </div>
 
-          <mat-form-field appearance="outline" class="w-full">
+          <mat-form-field appearance="outline" class="w-full mb-4">
             <mat-label>Email address</mat-label>
             <input matInput placeholder="you@company.com" formControlName="email" />
             <mat-icon matPrefix class="mr-2 text-slate-400">email</mat-icon>
@@ -58,18 +58,18 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <mat-form-field appearance="outline" class="w-full">
+            <mat-form-field appearance="outline" class="w-full mb-4">
               <mat-label>First Name</mat-label>
               <input matInput placeholder="First Name" formControlName="firstName" />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-full">
+            <mat-form-field appearance="outline" class="w-full mb-4">
               <mat-label>Last Name</mat-label>
               <input matInput placeholder="Last Name" formControlName="lastName" />
             </mat-form-field>
           </div>
 
-          <mat-form-field appearance="outline" class="w-full">
+          <mat-form-field appearance="outline" class="w-full mb-4">
             <mat-label>Address</mat-label>
             <input matInput placeholder="Address" formControlName="address" />
           </mat-form-field>
@@ -80,14 +80,14 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <mat-form-field appearance="outline" class="w-full">
+            <mat-form-field appearance="outline" class="w-full mb-4">
               <mat-label>Date of Birth</mat-label>
               <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" placeholder="Date of Birth" />
               <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
               <mat-datepicker #dobPicker></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-full">
+            <mat-form-field appearance="outline" class="w-full mb-4">
               <mat-label>Date of Hire</mat-label>
               <input matInput [matDatepicker]="hirePicker" formControlName="dateOfHire" placeholder="Date of Hire" />
               <mat-datepicker-toggle matSuffix [for]="hirePicker"></mat-datepicker-toggle>
@@ -95,7 +95,7 @@
             </mat-form-field>
           </div>
 
-          <mat-form-field appearance="outline" class="w-full">
+          <mat-form-field appearance="outline" class="w-full mb-4">
             <mat-label>Salary</mat-label>
             <input matInput type="number" formControlName="salary" />
             <mat-icon matPrefix class="mr-2 text-slate-400">attach_money</mat-icon>

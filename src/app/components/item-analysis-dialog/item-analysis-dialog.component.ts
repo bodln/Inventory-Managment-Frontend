@@ -43,7 +43,10 @@ import { AnalysisResponse } from '../../interfaces/analysis-reponse';
           </div>
           <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:14px;">
             <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#16a34a; margin-bottom:4px;">Total Profit</div>
-            <div style="font-family:'DM Mono',monospace; font-size:1.4rem; font-weight:500; color:#15803d; line-height:1;">{{ data.analysis.totalProfit | currency }}</div>
+            <div style="font-family:'DM Mono',monospace; font-size:1.4rem; font-weight:500; color:#15803d; line-height:1;">
+              {{ data.analysis.totalProfit | currency }}
+              ({{ (data.analysis.totalProfit - (data.analysis.totalProfit * 0.8)) | currency }})
+            </div>
           </div>
           <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:14px;">
             <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#2563eb; margin-bottom:4px;">Units Sold</div>
